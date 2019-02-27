@@ -1,5 +1,5 @@
 [[package]]
-category = "main"
+category = "dev"
 description = "The Cython compiler for writing C extensions for the Python language."
 name = "cython"
 optional = false
@@ -7,7 +7,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 version = "0.29.5"
 
 [metadata]
-content-hash = "53d316173d49ab4d8ad0cd9d7dbebeb2f942a5f30370d60133a160b49f342823"
+content-hash = "1b4b2a463cf2a5c84b9653047eebcc066ad9f3810c3cd16e19e94dc405ba30ed"
 python-versions = "^3.7"
 
 [metadata.hashes]

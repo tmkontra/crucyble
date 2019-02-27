@@ -1,16 +1,16 @@
 [tool.poetry]
 name = "crucyble"
-version = "0.0.1"
+version = "0.0.2"
 description = "A Cython Wrapped GloVe"
 authors = ["Tyler Kontra <tyler@tylerkontra.com>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-Cython = "^0.29.5"
 
 [tool.poetry.dev-dependencies]
+Cython = "^0.29.5"
 
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=0.12", "setuptools", "cython"]
 build-backend = "poetry.masonry.api"

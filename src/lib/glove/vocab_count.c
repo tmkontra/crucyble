@@ -26,6 +26,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <vocab_count.h>
+
 #define MAX_STRING_LENGTH 1000
 #define TSIZE	1048576
 #define SEED	1159241
@@ -119,14 +121,15 @@ void hashinsert(HASHREC **ht, char *w) {
     return;
 }
 
-int get_counts() {
+int get_counts(char* corpus_file, char* output_file) {
     long long i = 0, j = 0, vocab_size = 12500;
     char format[20];
     char str[MAX_STRING_LENGTH + 1];
     HASHREC **vocab_hash = inithashtable();
     HASHREC *htmp;
     VOCAB *vocab;
-    FILE *fid = stdin;
+    FILE *fid = fopen(corpus_file, "rb");
+    FILE *fout = fopen(output_file, "wb");
     
     fprintf(stderr, "BUILDING VOCABULARY\n");
     if(verbose > 1) fprintf(stderr, "Processed %lld tokens.", i);
@@ -163,7 +166,7 @@ int get_counts() {
             if(verbose > 0) fprintf(stderr, "Truncating vocabulary at min count %lld.\n",min_count);
             break;
         }
-        printf("%s %lld\n",vocab[i].word,vocab[i].count);
+        fprintf(fout, "%s %lld\n",vocab[i].word,vocab[i].count);
     }
     
     if(i == max_vocab && max_vocab < j) if(verbose > 0) fprintf(stderr, "Truncating vocabulary at size %lld.\n", max_vocab);
@@ -185,26 +188,8 @@ int find_arg(char *str, int argc, char **argv) {
     return -1;
 }
 
-int main(int argc, char **argv) {
-    int i;
-    if (argc == 1) {
-        printf("Simple tool to extract unigram counts\n");
-        printf("Author: Jeffrey Pennington (jpennin@stanford.edu)\n\n");
-        printf("Usage options:\n");
-        printf("\t-verbose <int>\n");
-        printf("\t\tSet verbosity: 0, 1, or 2 (default)\n");
-        printf("\t-max-vocab <int>\n");
-        printf("\t\tUpper bound on vocabulary size, i.e. keep the <int> most frequent words. The minimum frequency words are randomly sampled so as to obtain an even distribution over the alphabet.\n");
-        printf("\t-min-count <int>\n");
-        printf("\t\tLower limit such that words which occur fewer than <int> times are discarded.\n");
-        printf("\nExample usage:\n");
-        printf("./vocab_count -verbose 2 -max-vocab 100000 -min-count 10 < corpus.txt > vocab.txt\n");
-        return 0;
-    }
-    
-    if ((i = find_arg((char *)"-verbose", argc, argv)) > 0) verbose = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-max-vocab", argc, argv)) > 0) max_vocab = atoll(argv[i + 1]);
-    if ((i = find_arg((char *)"-min-count", argc, argv)) > 0) min_count = atoll(argv[i + 1]);
-    return get_counts();
+int vocab_count(char* corpus_file, char* output_file, int verbosity, long long max_vocab_count, long long min_word_count) {
+    verbose = verbosity; max_vocab = max_vocab_count; min_count = min_word_count;
+    return get_counts(corpus_file, output_file);
 }
 
