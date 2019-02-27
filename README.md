@@ -15,7 +15,7 @@ A **Cy**thon Wrapped GloVe (Global Vectors for Word Representation)
 
 This library aims to provide the GloVe algorithm in a nearly-unaltered format relative to its original distribution by stanfordnlp.
 
-The bulk of the alterations consist of removing the `main()` methods from the glove applications, and converting them to accept filenames instead of stdin/stdout.
+The bulk of the alterations consist of removing the `main()` methods from the glove applications, and converting them to accept filenames instead of stdin/stdout. (See pull requests [1](https://github.com/ttymck/crucyble/pull/1), [2](https://github.com/ttymck/crucyble/pull/2), and [3](https://github.com/ttymck/crucyble/pull/3))
 
 These altered C sources are then wrapped with Cython to provide "native extensions" in the Python runtime.
 
