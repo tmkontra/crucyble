@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crucyble"
-version = "0.0.1"
+version = "0.0.2"
 description = "A Cython Wrapped GloVe"
 authors = ["Tyler Kontra <tyler@tylerkontra.com>"]
 license = "MIT"
