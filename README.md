@@ -22,10 +22,12 @@ These altered C sources are then wrapped with Cython to provide "native extensio
 ## Development
 
 ### Local Testing
+**Prerequisites**: `gcc` and [cython](https://cython.readthedocs.io/en/latest/src/quickstart/install.html) installed.
+
 To test this library locally:
 1. clone the repo
 2. from `crucyble/` run `python setup.py build_ext -i`
-3. try: `python test/test_glove.py`
+3. try: `PYTHONPATH=. python test/test_glove.py`
 4. examine the outputs!
 
 You can change the corpus variable in `test_glove.py` to point to any corpus you have locally.
