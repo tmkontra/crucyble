@@ -19,6 +19,20 @@ The bulk of the alterations consist of removing the `main()` methods from the gl
 
 These altered C sources are then wrapped with Cython to provide "native extensions" in the Python runtime.
 
+## Development
+
+### Local Testing
+To test this library locally:
+1. clone the repo
+2. from `crucyble/` run `python setup.py build_ext -i`
+3. try: `python test/test_glove.py`
+4. examine the outputs!
+
+You can change the corpus variable in `test_glove.py` to point to any corpus you have locally.
+
+### Contributing
+...coming soon
+
 ## Performance
 
 Todo... :shrug:
