@@ -168,25 +168,13 @@ int get_counts(char* corpus_file, char* output_file) {
         }
         fprintf(fout, "%s %lld\n",vocab[i].word,vocab[i].count);
     }
+    fclose(fout);
     
     if(i == max_vocab && max_vocab < j) if(verbose > 0) fprintf(stderr, "Truncating vocabulary at size %lld.\n", max_vocab);
     fprintf(stderr, "Using vocabulary of size %lld.\n\n", i);
     return 0;
 }
 
-int find_arg(char *str, int argc, char **argv) {
-    int i;
-    for (i = 1; i < argc; i++) {
-        if(!scmp(str, argv[i])) {
-            if (i == argc - 1) {
-                printf("No argument given for %s\n", str);
-                exit(1);
-            }
-            return i;
-        }
-    }
-    return -1;
-}
 
 int vocab_count(char* corpus_file, char* output_file, int verbosity, long long max_vocab_count, long long min_word_count) {
     verbose = verbosity; max_vocab = max_vocab_count; min_count = min_word_count;

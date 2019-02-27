@@ -6,13 +6,13 @@
         "include_dirs": [
             "src/lib/glove"
         ],
-        "name": "glove",
+        "name": "crucyble.cooccur",
         "sources": [
-            "src/lib/cyglove.pyx",
-            "src/lib/glove/vocab_count.c"
+            "src/lib/cooccur.pyx",
+            "src/lib/glove/cooccur.c"
         ]
     },
-    "module_name": "glove"
+    "module_name": "crucyble.cooccur"
 }
 END: Cython Metadata */
 
@@ -601,10 +601,10 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__glove
-#define __PYX_HAVE_API__glove
+#define __PYX_HAVE__crucyble__cooccur
+#define __PYX_HAVE_API__crucyble__cooccur
 /* Early includes */
-#include "glove/vocab_count.h"
+#include "glove/cooccur.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -812,7 +812,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "src/lib/cyglove.pyx",
+  "src/lib/cooccur.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -994,9 +994,6 @@ static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
 
-/* CIntFromPy.proto */
-static CYTHON_INLINE PY_LONG_LONG __Pyx_PyInt_As_PY_LONG_LONG(PyObject *);
-
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
 
@@ -1023,69 +1020,85 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'cglove' */
+/* Module declarations from '_cooccur' */
 
-/* Module declarations from 'glove' */
-#define __Pyx_MODULE_NAME "glove"
-extern int __pyx_module_is_main_glove;
-int __pyx_module_is_main_glove = 0;
+/* Module declarations from 'crucyble.cooccur' */
+#define __Pyx_MODULE_NAME "crucyble.cooccur"
+extern int __pyx_module_is_main_crucyble__cooccur;
+int __pyx_module_is_main_crucyble__cooccur = 0;
 
-/* Implementation of 'glove' */
-static const char __pyx_k_arg[] = "arg";
-static const char __pyx_k_arg2[] = "arg2";
-static const char __pyx_k_arg3[] = "arg3";
+/* Implementation of 'crucyble.cooccur' */
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_glove[] = "glove";
-static const char __pyx_k_corpus[] = "corpus";
-static const char __pyx_k_output[] = "output";
-static const char __pyx_k_vocab_count[] = "vocab_count";
+static const char __pyx_k_cooccur[] = "cooccur";
+static const char __pyx_k_symmetry[] = "symmetry";
+static const char __pyx_k_verbosity[] = "verbosity";
+static const char __pyx_k_vocab_file[] = "vocab_file_";
+static const char __pyx_k_corpus_file[] = "corpus_file";
+static const char __pyx_k_output_file[] = "output_file";
+static const char __pyx_k_overflow_file[] = "overflow_file";
+static const char __pyx_k_memory_limit_gb[] = "memory_limit_gb";
+static const char __pyx_k_crucyble_cooccur[] = "crucyble.cooccur";
+static const char __pyx_k_window_size_decl[] = "window_size_decl";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_src_lib_cyglove_pyx[] = "src/lib/cyglove.pyx";
-static PyObject *__pyx_n_s_arg;
-static PyObject *__pyx_n_s_arg2;
-static PyObject *__pyx_n_s_arg3;
+static const char __pyx_k_src_lib_cooccur_pyx[] = "src/lib/cooccur.pyx";
 static PyObject *__pyx_n_s_cline_in_traceback;
-static PyObject *__pyx_n_s_corpus;
-static PyObject *__pyx_n_s_glove;
+static PyObject *__pyx_n_s_cooccur;
+static PyObject *__pyx_n_s_corpus_file;
+static PyObject *__pyx_n_s_crucyble_cooccur;
 static PyObject *__pyx_n_s_main;
+static PyObject *__pyx_n_s_memory_limit_gb;
 static PyObject *__pyx_n_s_name;
-static PyObject *__pyx_n_s_output;
-static PyObject *__pyx_kp_s_src_lib_cyglove_pyx;
+static PyObject *__pyx_n_s_output_file;
+static PyObject *__pyx_n_s_overflow_file;
+static PyObject *__pyx_kp_s_src_lib_cooccur_pyx;
+static PyObject *__pyx_n_s_symmetry;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_vocab_count;
-static PyObject *__pyx_pf_5glove_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus, char *__pyx_v_output, int __pyx_v_arg, PY_LONG_LONG __pyx_v_arg2, PY_LONG_LONG __pyx_v_arg3); /* proto */
+static PyObject *__pyx_n_s_verbosity;
+static PyObject *__pyx_n_s_vocab_file;
+static PyObject *__pyx_n_s_window_size_decl;
+static PyObject *__pyx_pf_8crucyble_7cooccur_cooccur(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_vocab_file_, char *__pyx_v_output_file, int __pyx_v_verbosity, int __pyx_v_symmetry, int __pyx_v_window_size_decl, char *__pyx_v_overflow_file, float __pyx_v_memory_limit_gb); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
 
-/* "glove.pyx":6
- * cimport cglove
+/* "src/lib/cooccur.pyx":6
+ * cimport _cooccur
  * 
- * def vocab_count(char* corpus, char* output, int arg, long long arg2, long long arg3):             # <<<<<<<<<<<<<<
- *     return cglove.vocab_count(corpus, output, arg, arg2, arg3)
+ * def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity,             # <<<<<<<<<<<<<<
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_5glove_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_5glove_1vocab_count = {"vocab_count", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_5glove_1vocab_count, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_5glove_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  char *__pyx_v_corpus;
-  char *__pyx_v_output;
-  int __pyx_v_arg;
-  PY_LONG_LONG __pyx_v_arg2;
-  PY_LONG_LONG __pyx_v_arg3;
+static PyObject *__pyx_pw_8crucyble_7cooccur_1cooccur(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8crucyble_7cooccur_1cooccur = {"cooccur", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8crucyble_7cooccur_1cooccur, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8crucyble_7cooccur_1cooccur(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  char *__pyx_v_corpus_file;
+  char *__pyx_v_vocab_file_;
+  char *__pyx_v_output_file;
+  int __pyx_v_verbosity;
+  int __pyx_v_symmetry;
+  int __pyx_v_window_size_decl;
+  char *__pyx_v_overflow_file;
+  float __pyx_v_memory_limit_gb;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("vocab_count (wrapper)", 0);
+  __Pyx_RefNannySetupContext("cooccur (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_corpus,&__pyx_n_s_output,&__pyx_n_s_arg,&__pyx_n_s_arg2,&__pyx_n_s_arg3,0};
-    PyObject* values[5] = {0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_corpus_file,&__pyx_n_s_vocab_file,&__pyx_n_s_output_file,&__pyx_n_s_verbosity,&__pyx_n_s_symmetry,&__pyx_n_s_window_size_decl,&__pyx_n_s_overflow_file,&__pyx_n_s_memory_limit_gb,0};
+    PyObject* values[8] = {0,0,0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  8: values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
+        CYTHON_FALLTHROUGH;
+        case  7: values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+        CYTHON_FALLTHROUGH;
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -1102,37 +1115,55 @@ static PyObject *__pyx_pw_5glove_1vocab_count(PyObject *__pyx_self, PyObject *__
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_corpus)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_corpus_file)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_vocab_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 1); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 1); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_arg)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 2); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 2); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_arg2)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_verbosity)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 3); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 3); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_arg3)) != 0)) kw_args--;
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_symmetry)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 4); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 4); __PYX_ERR(0, 6, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  5:
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_window_size_decl)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 5); __PYX_ERR(0, 6, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  6:
+        if (likely((values[6] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_overflow_file)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 6); __PYX_ERR(0, 6, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  7:
+        if (likely((values[7] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_memory_limit_gb)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, 7); __PYX_ERR(0, 6, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "vocab_count") < 0)) __PYX_ERR(0, 6, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "cooccur") < 0)) __PYX_ERR(0, 6, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 8) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -1140,57 +1171,71 @@ static PyObject *__pyx_pw_5glove_1vocab_count(PyObject *__pyx_self, PyObject *__
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+      values[6] = PyTuple_GET_ITEM(__pyx_args, 6);
+      values[7] = PyTuple_GET_ITEM(__pyx_args, 7);
     }
-    __pyx_v_corpus = __Pyx_PyObject_AsWritableString(values[0]); if (unlikely((!__pyx_v_corpus) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_output = __Pyx_PyObject_AsWritableString(values[1]); if (unlikely((!__pyx_v_output) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_arg = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_arg == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_arg2 = __Pyx_PyInt_As_PY_LONG_LONG(values[3]); if (unlikely((__pyx_v_arg2 == (PY_LONG_LONG)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_arg3 = __Pyx_PyInt_As_PY_LONG_LONG(values[4]); if (unlikely((__pyx_v_arg3 == (PY_LONG_LONG)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_corpus_file = __Pyx_PyObject_AsWritableString(values[0]); if (unlikely((!__pyx_v_corpus_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_vocab_file_ = __Pyx_PyObject_AsWritableString(values[1]); if (unlikely((!__pyx_v_vocab_file_) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_output_file = __Pyx_PyObject_AsWritableString(values[2]); if (unlikely((!__pyx_v_output_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_verbosity = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_verbosity == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_symmetry = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_symmetry == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L3_error)
+    __pyx_v_window_size_decl = __Pyx_PyInt_As_int(values[5]); if (unlikely((__pyx_v_window_size_decl == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L3_error)
+    __pyx_v_overflow_file = __Pyx_PyObject_AsWritableString(values[6]); if (unlikely((!__pyx_v_overflow_file) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L3_error)
+    __pyx_v_memory_limit_gb = __pyx_PyFloat_AsFloat(values[7]); if (unlikely((__pyx_v_memory_limit_gb == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 7, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("cooccur", 1, 8, 8, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("glove.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.cooccur.cooccur", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_5glove_vocab_count(__pyx_self, __pyx_v_corpus, __pyx_v_output, __pyx_v_arg, __pyx_v_arg2, __pyx_v_arg3);
+  __pyx_r = __pyx_pf_8crucyble_7cooccur_cooccur(__pyx_self, __pyx_v_corpus_file, __pyx_v_vocab_file_, __pyx_v_output_file, __pyx_v_verbosity, __pyx_v_symmetry, __pyx_v_window_size_decl, __pyx_v_overflow_file, __pyx_v_memory_limit_gb);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_5glove_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus, char *__pyx_v_output, int __pyx_v_arg, PY_LONG_LONG __pyx_v_arg2, PY_LONG_LONG __pyx_v_arg3) {
+static PyObject *__pyx_pf_8crucyble_7cooccur_cooccur(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_vocab_file_, char *__pyx_v_output_file, int __pyx_v_verbosity, int __pyx_v_symmetry, int __pyx_v_window_size_decl, char *__pyx_v_overflow_file, float __pyx_v_memory_limit_gb) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("vocab_count", 0);
+  __Pyx_RefNannySetupContext("cooccur", 0);
 
-  /* "glove.pyx":7
- * 
- * def vocab_count(char* corpus, char* output, int arg, long long arg2, long long arg3):
- *     return cglove.vocab_count(corpus, output, arg, arg2, arg3)             # <<<<<<<<<<<<<<
+  /* "src/lib/cooccur.pyx":8
+ * def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity,
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,             # <<<<<<<<<<<<<<
+ *             symmetry, window_size_decl, overflow_file, memory_limit_gb)
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(vocab_count(__pyx_v_corpus, __pyx_v_output, __pyx_v_arg, __pyx_v_arg2, __pyx_v_arg3)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+
+  /* "src/lib/cooccur.pyx":9
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,
+ *             symmetry, window_size_decl, overflow_file, memory_limit_gb)             # <<<<<<<<<<<<<<
+ */
+  __pyx_t_1 = __Pyx_PyInt_From_int(cooccur(__pyx_v_corpus_file, __pyx_v_vocab_file_, __pyx_v_output_file, __pyx_v_verbosity, __pyx_v_symmetry, __pyx_v_window_size_decl, __pyx_v_overflow_file, __pyx_v_memory_limit_gb)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "glove.pyx":6
- * cimport cglove
+  /* "src/lib/cooccur.pyx":6
+ * cimport _cooccur
  * 
- * def vocab_count(char* corpus, char* output, int arg, long long arg2, long long arg3):             # <<<<<<<<<<<<<<
- *     return cglove.vocab_count(corpus, output, arg, arg2, arg3)
+ * def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity,             # <<<<<<<<<<<<<<
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("glove.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.cooccur.cooccur", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1205,17 +1250,17 @@ static PyMethodDef __pyx_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_glove(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_cooccur(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_glove},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_cooccur},
   {0, NULL}
 };
 #endif
 
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "glove",
+    "cooccur",
     0, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
@@ -1244,18 +1289,21 @@ static struct PyModuleDef __pyx_moduledef = {
 #endif
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
-  {&__pyx_n_s_arg, __pyx_k_arg, sizeof(__pyx_k_arg), 0, 0, 1, 1},
-  {&__pyx_n_s_arg2, __pyx_k_arg2, sizeof(__pyx_k_arg2), 0, 0, 1, 1},
-  {&__pyx_n_s_arg3, __pyx_k_arg3, sizeof(__pyx_k_arg3), 0, 0, 1, 1},
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-  {&__pyx_n_s_corpus, __pyx_k_corpus, sizeof(__pyx_k_corpus), 0, 0, 1, 1},
-  {&__pyx_n_s_glove, __pyx_k_glove, sizeof(__pyx_k_glove), 0, 0, 1, 1},
+  {&__pyx_n_s_cooccur, __pyx_k_cooccur, sizeof(__pyx_k_cooccur), 0, 0, 1, 1},
+  {&__pyx_n_s_corpus_file, __pyx_k_corpus_file, sizeof(__pyx_k_corpus_file), 0, 0, 1, 1},
+  {&__pyx_n_s_crucyble_cooccur, __pyx_k_crucyble_cooccur, sizeof(__pyx_k_crucyble_cooccur), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
+  {&__pyx_n_s_memory_limit_gb, __pyx_k_memory_limit_gb, sizeof(__pyx_k_memory_limit_gb), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
-  {&__pyx_n_s_output, __pyx_k_output, sizeof(__pyx_k_output), 0, 0, 1, 1},
-  {&__pyx_kp_s_src_lib_cyglove_pyx, __pyx_k_src_lib_cyglove_pyx, sizeof(__pyx_k_src_lib_cyglove_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_output_file, __pyx_k_output_file, sizeof(__pyx_k_output_file), 0, 0, 1, 1},
+  {&__pyx_n_s_overflow_file, __pyx_k_overflow_file, sizeof(__pyx_k_overflow_file), 0, 0, 1, 1},
+  {&__pyx_kp_s_src_lib_cooccur_pyx, __pyx_k_src_lib_cooccur_pyx, sizeof(__pyx_k_src_lib_cooccur_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_symmetry, __pyx_k_symmetry, sizeof(__pyx_k_symmetry), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_vocab_count, __pyx_k_vocab_count, sizeof(__pyx_k_vocab_count), 0, 0, 1, 1},
+  {&__pyx_n_s_verbosity, __pyx_k_verbosity, sizeof(__pyx_k_verbosity), 0, 0, 1, 1},
+  {&__pyx_n_s_vocab_file, __pyx_k_vocab_file, sizeof(__pyx_k_vocab_file), 0, 0, 1, 1},
+  {&__pyx_n_s_window_size_decl, __pyx_k_window_size_decl, sizeof(__pyx_k_window_size_decl), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
@@ -1266,16 +1314,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "glove.pyx":6
- * cimport cglove
+  /* "src/lib/cooccur.pyx":6
+ * cimport _cooccur
  * 
- * def vocab_count(char* corpus, char* output, int arg, long long arg2, long long arg3):             # <<<<<<<<<<<<<<
- *     return cglove.vocab_count(corpus, output, arg, arg2, arg3)
+ * def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity,             # <<<<<<<<<<<<<<
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,
  */
-  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_corpus, __pyx_n_s_output, __pyx_n_s_arg, __pyx_n_s_arg2, __pyx_n_s_arg3); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(8, __pyx_n_s_corpus_file, __pyx_n_s_vocab_file, __pyx_n_s_output_file, __pyx_n_s_verbosity, __pyx_n_s_symmetry, __pyx_n_s_window_size_decl, __pyx_n_s_overflow_file, __pyx_n_s_memory_limit_gb); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_cyglove_pyx, __pyx_n_s_vocab_count, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(8, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_cooccur_pyx, __pyx_n_s_cooccur, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -1371,11 +1420,11 @@ static int __Pyx_modinit_function_import_code(void) {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initglove(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initglove(void)
+__Pyx_PyMODINIT_FUNC initcooccur(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initcooccur(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_glove(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_glove(void)
+__Pyx_PyMODINIT_FUNC PyInit_cooccur(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_cooccur(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -1442,7 +1491,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_glove(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_cooccur(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -1451,7 +1500,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_glove(PyObject *__pyx_pyinit_modul
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'glove' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'cooccur' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -1466,7 +1515,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_glove(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_cooccur(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -1505,7 +1554,7 @@ if (!__Pyx_RefNanny) {
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("glove", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("cooccur", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -1524,14 +1573,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_glove) {
+  if (__pyx_module_is_main_crucyble__cooccur) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "glove")) {
-      if (unlikely(PyDict_SetItemString(modules, "glove", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "crucyble.cooccur")) {
+      if (unlikely(PyDict_SetItemString(modules, "crucyble.cooccur", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -1552,19 +1601,20 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "glove.pyx":6
- * cimport cglove
+  /* "src/lib/cooccur.pyx":6
+ * cimport _cooccur
  * 
- * def vocab_count(char* corpus, char* output, int arg, long long arg2, long long arg3):             # <<<<<<<<<<<<<<
- *     return cglove.vocab_count(corpus, output, arg, arg2, arg3)
+ * def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity,             # <<<<<<<<<<<<<<
+ *             int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+ *     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5glove_1vocab_count, NULL, __pyx_n_s_glove); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8crucyble_7cooccur_1cooccur, NULL, __pyx_n_s_crucyble_cooccur); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_vocab_count, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_cooccur, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "glove.pyx":1
- * # distutils: sources = src/lib/glove/vocab_count.c             # <<<<<<<<<<<<<<
+  /* "src/lib/cooccur.pyx":1
+ * # distutils: sources = src/lib/glove/cooccur.c             # <<<<<<<<<<<<<<
  * # distutils: include_dirs = src/lib/glove
  * 
  */
@@ -1580,11 +1630,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init glove", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init crucyble.cooccur", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init glove");
+    PyErr_SetString(PyExc_ImportError, "init crucyble.cooccur");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -2264,195 +2314,6 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to int");
     return (int) -1;
-}
-
-/* CIntFromPy */
-static CYTHON_INLINE PY_LONG_LONG __Pyx_PyInt_As_PY_LONG_LONG(PyObject *x) {
-    const PY_LONG_LONG neg_one = (PY_LONG_LONG) ((PY_LONG_LONG) 0 - (PY_LONG_LONG) 1), const_zero = (PY_LONG_LONG) 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(PY_LONG_LONG) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (PY_LONG_LONG) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (PY_LONG_LONG) 0;
-                case  1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, digit, digits[0])
-                case 2:
-                    if (8 * sizeof(PY_LONG_LONG) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(PY_LONG_LONG) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(PY_LONG_LONG) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-            }
-#endif
-#if CYTHON_COMPILING_IN_CPYTHON
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-#else
-            {
-                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
-                if (unlikely(result < 0))
-                    return (PY_LONG_LONG) -1;
-                if (unlikely(result == 1))
-                    goto raise_neg_overflow;
-            }
-#endif
-            if (sizeof(PY_LONG_LONG) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, unsigned long, PyLong_AsUnsignedLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(PY_LONG_LONG) <= sizeof(unsigned PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
-#endif
-            }
-        } else {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (PY_LONG_LONG) 0;
-                case -1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, sdigit, (sdigit) (-(sdigit)digits[0]))
-                case  1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG,  digit, +digits[0])
-                case -2:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 2:
-                    if (8 * sizeof(PY_LONG_LONG) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case -3:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(PY_LONG_LONG) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case -4:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(PY_LONG_LONG) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-            }
-#endif
-            if (sizeof(PY_LONG_LONG) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, long, PyLong_AsLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(PY_LONG_LONG) <= sizeof(PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, PY_LONG_LONG, PyLong_AsLongLong(x))
-#endif
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            PY_LONG_LONG val;
-            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (PY_LONG_LONG) -1;
-        }
-    } else {
-        PY_LONG_LONG val;
-        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
-        if (!tmp) return (PY_LONG_LONG) -1;
-        val = __Pyx_PyInt_As_PY_LONG_LONG(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to PY_LONG_LONG");
-    return (PY_LONG_LONG) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to PY_LONG_LONG");
-    return (PY_LONG_LONG) -1;
 }
 
 /* CIntToPy */
