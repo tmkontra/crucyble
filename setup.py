@@ -7,6 +7,7 @@ extensions = [
         Extension("crucyble.vocab_count", ["src/lib/vocab_count.pyx"]),
         Extension("crucyble.cooccur", ["src/lib/cooccur.pyx"]),
         Extension("crucyble.shuffle", ["src/lib/shuffle.pyx"]),
+        Extension("crucyble.glove", ["src/lib/glove.pyx"]),
     ]
 
 setup(
