@@ -184,7 +184,7 @@ int shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int ver
     file_head = temp_file;
     memory_limit = memory_limit_gb;
     // TODO: investigate SIGSEGV when memory > 2.0
-    array_size = (long long) (0.95 * (real)memory_limit * 1073741824/(sizeof(CREC)));
+    array_size = (long long) (0.80 * (real)memory_limit * 1073741824/(sizeof(CREC)));
     // TODO: add back in array_size override
     return shuffle_by_chunks(cooccurrence_file, output_file);
 }
