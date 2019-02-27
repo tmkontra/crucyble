@@ -48,7 +48,7 @@ int save_gradsq = 0; // By default don't save squared gradient values
 int use_binary = 1; // 0: save as text files; 1: save as binary; 2: both. For binary, save both word and context word vectors.
 int model = 2; // For text file output only. 0: concatenate word and context vectors (and biases) i.e. save everything; 1: Just save word vectors (no bias); 2: Save (word + context word) vectors (no biases)
 real eta = 0.05; // Initial learning rate
-real alpha = 0.75, x_max = 100.0; // Weighting function parameters, not extremely sensitive to corpus, though may need adjustment for very small or very large corpora
+real alpha = 0.75, x_max = 10.0; // Weighting function parameters, not extremely sensitive to corpus, though may need adjustment for very small or very large corpora
 real *W, *gradsq, *cost;
 long long num_lines, *lines_per_thread, vocab_size;
 char *vocab_file, *input_file, *save_W_file, *save_gradsq_file;
@@ -261,98 +261,29 @@ int train_glove() {
     return save_params();
 }
 
-int find_arg(char *str, int argc, char **argv) {
-    int i;
-    for (i = 1; i < argc; i++) {
-        if(!scmp(str, argv[i])) {
-            if (i == argc - 1) {
-                printf("No argument given for %s\n", str);
-                exit(1);
-            }
-            return i;
-        }
-    }
-    return -1;
-}
-
-int main(int argc, char **argv) {
+int train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity) {
     int i;
     FILE *fid;
     vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     input_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     save_W_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     save_gradsq_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
-    
-    if (argc == 1) {
-        printf("GloVe: Global Vectors for Word Representation, v0.2\n");
-        printf("Author: Jeffrey Pennington (jpennin@stanford.edu)\n\n");
-        printf("Usage options:\n");
-        printf("\t-verbose <int>\n");
-        printf("\t\tSet verbosity: 0, 1, or 2 (default)\n");
-        printf("\t-vector-size <int>\n");
-        printf("\t\tDimension of word vector representations (excluding bias term); default 50\n");
-        printf("\t-threads <int>\n");
-        printf("\t\tNumber of threads; default 8\n");
-        printf("\t-iter <int>\n");
-        printf("\t\tNumber of training iterations; default 25\n");
-        printf("\t-eta <float>\n");
-        printf("\t\tInitial learning rate; default 0.05\n");
-        printf("\t-alpha <float>\n");
-        printf("\t\tParameter in exponent of weighting function; default 0.75\n");
-        printf("\t-x-max <float>\n");
-        printf("\t\tParameter specifying cutoff in weighting function; default 100.0\n");
-        printf("\t-binary <int>\n");
-        printf("\t\tSave output in binary format (0: text, 1: binary, 2: both); default 0\n");
-        printf("\t-model <int>\n");
-        printf("\t\tModel for word vector output (for text output only); default 2\n");
-        printf("\t\t   0: output all data, for both word and context word vectors, including bias terms\n");
-        printf("\t\t   1: output word vectors, excluding bias terms\n");
-        printf("\t\t   2: output word vectors + context word vectors, excluding bias terms\n");
-        printf("\t-input-file <file>\n");
-        printf("\t\tBinary input file of shuffled cooccurrence data (produced by 'cooccur' and 'shuffle'); default cooccurrence.shuf.bin\n");
-        printf("\t-vocab-file <file>\n");
-        printf("\t\tFile containing vocabulary (truncated unigram counts, produced by 'vocab_count'); default vocab.txt\n");
-        printf("\t-save-file <file>\n");
-        printf("\t\tFilename, excluding extension, for word vector output; default vectors\n");
-        printf("\t-gradsq-file <file>\n");
-        printf("\t\tFilename, excluding extension, for squared gradient output; default gradsq\n");
-        printf("\t-save-gradsq <int>\n");
-        printf("\t\tSave accumulated squared gradients; default 0 (off); ignored if gradsq-file is specified\n");
-        printf("\nExample usage:\n");
-        printf("./glove -input-file cooccurrence.shuf.bin -vocab-file vocab.txt -save-file vectors -gradsq-file gradsq -verbose 2 -vector-size 100 -threads 16 -alpha 0.75 -x-max 100.0 -eta 0.05 -binary 2 -model 2\n\n");
-        return 0;
-    }
-    
-    
-    if ((i = find_arg((char *)"-verbose", argc, argv)) > 0) verbose = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-vector-size", argc, argv)) > 0) vector_size = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-iter", argc, argv)) > 0) num_iter = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-threads", argc, argv)) > 0) num_threads = atoi(argv[i + 1]);
-    cost = malloc(sizeof(real) * num_threads);
-    if ((i = find_arg((char *)"-alpha", argc, argv)) > 0) alpha = atof(argv[i + 1]);
-    if ((i = find_arg((char *)"-x-max", argc, argv)) > 0) x_max = atof(argv[i + 1]);
-    if ((i = find_arg((char *)"-eta", argc, argv)) > 0) eta = atof(argv[i + 1]);
-    if ((i = find_arg((char *)"-binary", argc, argv)) > 0) use_binary = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-model", argc, argv)) > 0) model = atoi(argv[i + 1]);
+
+    verbose = verbosity;
+    input_file = input_file_;
+    vocab_file = vocab_file_;
+    save_W_file = output_vector_files;
+    // TODO: save_gradsq is optional (boolean), how to have kwarg save_gradsq_file for fname?
+    save_gradsq_file = output_gradsq_files; save_gradsq = 1;
+
+    //default model
     if(model != 0 && model != 1) model = 2;
-    if ((i = find_arg((char *)"-save-gradsq", argc, argv)) > 0) save_gradsq = atoi(argv[i + 1]);
-    if ((i = find_arg((char *)"-vocab-file", argc, argv)) > 0) strcpy(vocab_file, argv[i + 1]);
-    else strcpy(vocab_file, (char *)"vocab.txt");
-    if ((i = find_arg((char *)"-save-file", argc, argv)) > 0) strcpy(save_W_file, argv[i + 1]);
-    else strcpy(save_W_file, (char *)"vectors");
-    if ((i = find_arg((char *)"-gradsq-file", argc, argv)) > 0) {
-        strcpy(save_gradsq_file, argv[i + 1]);
-        save_gradsq = 1;
-    }
-    else if(save_gradsq > 0) strcpy(save_gradsq_file, (char *)"gradsq");
-    if ((i = find_arg((char *)"-input-file", argc, argv)) > 0) strcpy(input_file, argv[i + 1]);
-    else strcpy(input_file, (char *)"cooccurrence.shuf.bin");
-    
+
+    cost = malloc(sizeof(real) * num_threads);
     vocab_size = 0;
     fid = fopen(vocab_file, "r");
     if(fid == NULL) {fprintf(stderr, "Unable to open vocab file %s.\n",vocab_file); return 1;}
     while ((i = getc(fid)) != EOF) if (i == '\n') vocab_size++; // Count number of entries in vocab_file
     fclose(fid);
-    
     return train_glove();
 }

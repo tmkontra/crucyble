@@ -6,13 +6,13 @@
         "include_dirs": [
             "src/lib/glove"
         ],
-        "name": "crucyble.vocab_count",
+        "name": "crucyble.glove",
         "sources": [
-            "src/lib/vocab_count.pyx",
-            "src/lib/glove/vocab_count.c"
+            "src/lib/glove.pyx",
+            "src/lib/glove/glove.c"
         ]
     },
-    "module_name": "crucyble.vocab_count"
+    "module_name": "crucyble.glove"
 }
 END: Cython Metadata */
 
@@ -601,10 +601,10 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__crucyble__vocab_count
-#define __PYX_HAVE_API__crucyble__vocab_count
+#define __PYX_HAVE__crucyble__glove
+#define __PYX_HAVE_API__crucyble__glove
 /* Early includes */
-#include "glove/vocab_count.h"
+#include "glove/glove.h"
 #ifdef _OPENMP
 #include <omp.h>
 #endif /* _OPENMP */
@@ -812,7 +812,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "src/lib/vocab_count.pyx",
+  "src/lib/glove.pyx",
 };
 
 /*--- Type declarations ---*/
@@ -988,14 +988,8 @@ static void __pyx_insert_code_object(int code_line, PyCodeObject* code_object);
 static void __Pyx_AddTraceback(const char *funcname, int c_line,
                                int py_line, const char *filename);
 
-/* CIntToPy.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value);
-
 /* CIntFromPy.proto */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *);
-
-/* CIntFromPy.proto */
-static CYTHON_INLINE PY_LONG_LONG __Pyx_PyInt_As_PY_LONG_LONG(PyObject *);
 
 /* CIntToPy.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyInt_From_long(long value);
@@ -1023,64 +1017,64 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from '_vocab_count' */
+/* Module declarations from '_glove' */
 
-/* Module declarations from 'crucyble.vocab_count' */
-#define __Pyx_MODULE_NAME "crucyble.vocab_count"
-extern int __pyx_module_is_main_crucyble__vocab_count;
-int __pyx_module_is_main_crucyble__vocab_count = 0;
+/* Module declarations from 'crucyble.glove' */
+#define __Pyx_MODULE_NAME "crucyble.glove"
+extern int __pyx_module_is_main_crucyble__glove;
+int __pyx_module_is_main_crucyble__glove = 0;
 
-/* Implementation of 'crucyble.vocab_count' */
+/* Implementation of 'crucyble.glove' */
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
-static const char __pyx_k_verbose[] = "verbose";
-static const char __pyx_k_max_vocab[] = "max_vocab";
-static const char __pyx_k_min_count[] = "min_count";
-static const char __pyx_k_corpus_file[] = "corpus_file";
-static const char __pyx_k_output_file[] = "output_file";
-static const char __pyx_k_vocab_count[] = "vocab_count";
+static const char __pyx_k_train[] = "train";
+static const char __pyx_k_verbosity[] = "verbosity";
+static const char __pyx_k_input_file[] = "input_file_";
+static const char __pyx_k_vocab_file[] = "vocab_file_";
+static const char __pyx_k_crucyble_glove[] = "crucyble.glove";
+static const char __pyx_k_src_lib_glove_pyx[] = "src/lib/glove.pyx";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
-static const char __pyx_k_crucyble_vocab_count[] = "crucyble.vocab_count";
-static const char __pyx_k_src_lib_vocab_count_pyx[] = "src/lib/vocab_count.pyx";
+static const char __pyx_k_output_gradsq_files[] = "output_gradsq_files";
+static const char __pyx_k_output_vector_files[] = "output_vector_files";
 static PyObject *__pyx_n_s_cline_in_traceback;
-static PyObject *__pyx_n_s_corpus_file;
-static PyObject *__pyx_n_s_crucyble_vocab_count;
+static PyObject *__pyx_n_s_crucyble_glove;
+static PyObject *__pyx_n_s_input_file;
 static PyObject *__pyx_n_s_main;
-static PyObject *__pyx_n_s_max_vocab;
-static PyObject *__pyx_n_s_min_count;
 static PyObject *__pyx_n_s_name;
-static PyObject *__pyx_n_s_output_file;
-static PyObject *__pyx_kp_s_src_lib_vocab_count_pyx;
+static PyObject *__pyx_n_s_output_gradsq_files;
+static PyObject *__pyx_n_s_output_vector_files;
+static PyObject *__pyx_kp_s_src_lib_glove_pyx;
 static PyObject *__pyx_n_s_test;
-static PyObject *__pyx_n_s_verbose;
-static PyObject *__pyx_n_s_vocab_count;
-static PyObject *__pyx_pf_8crucyble_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count); /* proto */
+static PyObject *__pyx_n_s_train;
+static PyObject *__pyx_n_s_verbosity;
+static PyObject *__pyx_n_s_vocab_file;
+static PyObject *__pyx_pf_8crucyble_5glove_train(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_input_file_, char *__pyx_v_vocab_file_, char *__pyx_v_output_vector_files, char *__pyx_v_output_gradsq_files, int __pyx_v_verbosity); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
 
-/* "src/lib/vocab_count.pyx":6
- * cimport _vocab_count
+/* "src/lib/glove.pyx":6
+ * cimport _glove
  * 
- * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):             # <<<<<<<<<<<<<<
- *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)
+ * def train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity):             # <<<<<<<<<<<<<<
+ *     _glove.train(input_file_, vocab_file_, output_vector_files, output_gradsq_files, verbosity)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8crucyble_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_8crucyble_11vocab_count_1vocab_count = {"vocab_count", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8crucyble_11vocab_count_1vocab_count, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_8crucyble_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  char *__pyx_v_corpus_file;
-  char *__pyx_v_output_file;
-  int __pyx_v_verbose;
-  PY_LONG_LONG __pyx_v_max_vocab;
-  PY_LONG_LONG __pyx_v_min_count;
+static PyObject *__pyx_pw_8crucyble_5glove_1train(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8crucyble_5glove_1train = {"train", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8crucyble_5glove_1train, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8crucyble_5glove_1train(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+  char *__pyx_v_input_file_;
+  char *__pyx_v_vocab_file_;
+  char *__pyx_v_output_vector_files;
+  char *__pyx_v_output_gradsq_files;
+  int __pyx_v_verbosity;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("vocab_count (wrapper)", 0);
+  __Pyx_RefNannySetupContext("train (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_corpus_file,&__pyx_n_s_output_file,&__pyx_n_s_verbose,&__pyx_n_s_max_vocab,&__pyx_n_s_min_count,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_input_file,&__pyx_n_s_vocab_file,&__pyx_n_s_output_vector_files,&__pyx_n_s_output_gradsq_files,&__pyx_n_s_verbosity,0};
     PyObject* values[5] = {0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
@@ -1102,35 +1096,35 @@ static PyObject *__pyx_pw_8crucyble_11vocab_count_1vocab_count(PyObject *__pyx_s
       kw_args = PyDict_Size(__pyx_kwds);
       switch (pos_args) {
         case  0:
-        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_corpus_file)) != 0)) kw_args--;
+        if (likely((values[0] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_input_file)) != 0)) kw_args--;
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
-        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output_file)) != 0)) kw_args--;
+        if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_vocab_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 1); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("train", 1, 5, 5, 1); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
-        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_verbose)) != 0)) kw_args--;
+        if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output_vector_files)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 2); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("train", 1, 5, 5, 2); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
-        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_max_vocab)) != 0)) kw_args--;
+        if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output_gradsq_files)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 3); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("train", 1, 5, 5, 3); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
-        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_min_count)) != 0)) kw_args--;
+        if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_verbosity)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, 4); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("train", 1, 5, 5, 4); __PYX_ERR(0, 6, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "vocab_count") < 0)) __PYX_ERR(0, 6, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "train") < 0)) __PYX_ERR(0, 6, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
       goto __pyx_L5_argtuple_error;
@@ -1141,58 +1135,48 @@ static PyObject *__pyx_pw_8crucyble_11vocab_count_1vocab_count(PyObject *__pyx_s
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
     }
-    __pyx_v_corpus_file = __Pyx_PyObject_AsWritableString(values[0]); if (unlikely((!__pyx_v_corpus_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_output_file = __Pyx_PyObject_AsWritableString(values[1]); if (unlikely((!__pyx_v_output_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_verbose = __Pyx_PyInt_As_int(values[2]); if (unlikely((__pyx_v_verbose == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_max_vocab = __Pyx_PyInt_As_PY_LONG_LONG(values[3]); if (unlikely((__pyx_v_max_vocab == (PY_LONG_LONG)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
-    __pyx_v_min_count = __Pyx_PyInt_As_PY_LONG_LONG(values[4]); if (unlikely((__pyx_v_min_count == (PY_LONG_LONG)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_input_file_ = __Pyx_PyObject_AsWritableString(values[0]); if (unlikely((!__pyx_v_input_file_) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_vocab_file_ = __Pyx_PyObject_AsWritableString(values[1]); if (unlikely((!__pyx_v_vocab_file_) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_output_vector_files = __Pyx_PyObject_AsWritableString(values[2]); if (unlikely((!__pyx_v_output_vector_files) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_output_gradsq_files = __Pyx_PyObject_AsWritableString(values[3]); if (unlikely((!__pyx_v_output_gradsq_files) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_verbosity = __Pyx_PyInt_As_int(values[4]); if (unlikely((__pyx_v_verbosity == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("train", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("crucyble.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.glove.train", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8crucyble_11vocab_count_vocab_count(__pyx_self, __pyx_v_corpus_file, __pyx_v_output_file, __pyx_v_verbose, __pyx_v_max_vocab, __pyx_v_min_count);
+  __pyx_r = __pyx_pf_8crucyble_5glove_train(__pyx_self, __pyx_v_input_file_, __pyx_v_vocab_file_, __pyx_v_output_vector_files, __pyx_v_output_gradsq_files, __pyx_v_verbosity);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8crucyble_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count) {
+static PyObject *__pyx_pf_8crucyble_5glove_train(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_input_file_, char *__pyx_v_vocab_file_, char *__pyx_v_output_vector_files, char *__pyx_v_output_gradsq_files, int __pyx_v_verbosity) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  __Pyx_RefNannySetupContext("vocab_count", 0);
+  __Pyx_RefNannySetupContext("train", 0);
 
-  /* "src/lib/vocab_count.pyx":7
+  /* "src/lib/glove.pyx":7
  * 
- * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):
- *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)             # <<<<<<<<<<<<<<
+ * def train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity):
+ *     _glove.train(input_file_, vocab_file_, output_vector_files, output_gradsq_files, verbosity)             # <<<<<<<<<<<<<<
  */
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(vocab_count(__pyx_v_corpus_file, __pyx_v_output_file, __pyx_v_verbose, __pyx_v_max_vocab, __pyx_v_min_count)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
+  (void)(train(__pyx_v_input_file_, __pyx_v_vocab_file_, __pyx_v_output_vector_files, __pyx_v_output_gradsq_files, __pyx_v_verbosity));
 
-  /* "src/lib/vocab_count.pyx":6
- * cimport _vocab_count
+  /* "src/lib/glove.pyx":6
+ * cimport _glove
  * 
- * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):             # <<<<<<<<<<<<<<
- *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)
+ * def train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity):             # <<<<<<<<<<<<<<
+ *     _glove.train(input_file_, vocab_file_, output_vector_files, output_gradsq_files, verbosity)
  */
 
   /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("crucyble.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -1205,17 +1189,17 @@ static PyMethodDef __pyx_methods[] = {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_vocab_count(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_glove(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_vocab_count},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_glove},
   {0, NULL}
 };
 #endif
 
 static struct PyModuleDef __pyx_moduledef = {
     PyModuleDef_HEAD_INIT,
-    "vocab_count",
+    "glove",
     0, /* m_doc */
   #if CYTHON_PEP489_MULTI_PHASE_INIT
     0, /* m_size */
@@ -1245,17 +1229,17 @@ static struct PyModuleDef __pyx_moduledef = {
 
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
-  {&__pyx_n_s_corpus_file, __pyx_k_corpus_file, sizeof(__pyx_k_corpus_file), 0, 0, 1, 1},
-  {&__pyx_n_s_crucyble_vocab_count, __pyx_k_crucyble_vocab_count, sizeof(__pyx_k_crucyble_vocab_count), 0, 0, 1, 1},
+  {&__pyx_n_s_crucyble_glove, __pyx_k_crucyble_glove, sizeof(__pyx_k_crucyble_glove), 0, 0, 1, 1},
+  {&__pyx_n_s_input_file, __pyx_k_input_file, sizeof(__pyx_k_input_file), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
-  {&__pyx_n_s_max_vocab, __pyx_k_max_vocab, sizeof(__pyx_k_max_vocab), 0, 0, 1, 1},
-  {&__pyx_n_s_min_count, __pyx_k_min_count, sizeof(__pyx_k_min_count), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
-  {&__pyx_n_s_output_file, __pyx_k_output_file, sizeof(__pyx_k_output_file), 0, 0, 1, 1},
-  {&__pyx_kp_s_src_lib_vocab_count_pyx, __pyx_k_src_lib_vocab_count_pyx, sizeof(__pyx_k_src_lib_vocab_count_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_output_gradsq_files, __pyx_k_output_gradsq_files, sizeof(__pyx_k_output_gradsq_files), 0, 0, 1, 1},
+  {&__pyx_n_s_output_vector_files, __pyx_k_output_vector_files, sizeof(__pyx_k_output_vector_files), 0, 0, 1, 1},
+  {&__pyx_kp_s_src_lib_glove_pyx, __pyx_k_src_lib_glove_pyx, sizeof(__pyx_k_src_lib_glove_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
-  {&__pyx_n_s_verbose, __pyx_k_verbose, sizeof(__pyx_k_verbose), 0, 0, 1, 1},
-  {&__pyx_n_s_vocab_count, __pyx_k_vocab_count, sizeof(__pyx_k_vocab_count), 0, 0, 1, 1},
+  {&__pyx_n_s_train, __pyx_k_train, sizeof(__pyx_k_train), 0, 0, 1, 1},
+  {&__pyx_n_s_verbosity, __pyx_k_verbosity, sizeof(__pyx_k_verbosity), 0, 0, 1, 1},
+  {&__pyx_n_s_vocab_file, __pyx_k_vocab_file, sizeof(__pyx_k_vocab_file), 0, 0, 1, 1},
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
@@ -1266,16 +1250,16 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "src/lib/vocab_count.pyx":6
- * cimport _vocab_count
+  /* "src/lib/glove.pyx":6
+ * cimport _glove
  * 
- * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):             # <<<<<<<<<<<<<<
- *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)
+ * def train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity):             # <<<<<<<<<<<<<<
+ *     _glove.train(input_file_, vocab_file_, output_vector_files, output_gradsq_files, verbosity)
  */
-  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_corpus_file, __pyx_n_s_output_file, __pyx_n_s_verbose, __pyx_n_s_max_vocab, __pyx_n_s_min_count); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_input_file, __pyx_n_s_vocab_file, __pyx_n_s_output_vector_files, __pyx_n_s_output_gradsq_files, __pyx_n_s_verbosity); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_vocab_count_pyx, __pyx_n_s_vocab_count, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_glove_pyx, __pyx_n_s_train, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -1371,11 +1355,11 @@ static int __Pyx_modinit_function_import_code(void) {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initvocab_count(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initvocab_count(void)
+__Pyx_PyMODINIT_FUNC initglove(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initglove(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_vocab_count(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_vocab_count(void)
+__Pyx_PyMODINIT_FUNC PyInit_glove(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_glove(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -1442,7 +1426,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_vocab_count(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_glove(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -1451,7 +1435,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_vocab_count(PyObject *__pyx_pyinit
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'vocab_count' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'glove' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -1466,7 +1450,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_vocab_count(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_glove(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -1505,7 +1489,7 @@ if (!__Pyx_RefNanny) {
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("vocab_count", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("glove", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   #else
   __pyx_m = PyModule_Create(&__pyx_moduledef);
   #endif
@@ -1524,14 +1508,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_crucyble__vocab_count) {
+  if (__pyx_module_is_main_crucyble__glove) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "crucyble.vocab_count")) {
-      if (unlikely(PyDict_SetItemString(modules, "crucyble.vocab_count", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "crucyble.glove")) {
+      if (unlikely(PyDict_SetItemString(modules, "crucyble.glove", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -1552,19 +1536,19 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "src/lib/vocab_count.pyx":6
- * cimport _vocab_count
+  /* "src/lib/glove.pyx":6
+ * cimport _glove
  * 
- * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):             # <<<<<<<<<<<<<<
- *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)
+ * def train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity):             # <<<<<<<<<<<<<<
+ *     _glove.train(input_file_, vocab_file_, output_vector_files, output_gradsq_files, verbosity)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8crucyble_11vocab_count_1vocab_count, NULL, __pyx_n_s_crucyble_vocab_count); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8crucyble_5glove_1train, NULL, __pyx_n_s_crucyble_glove); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_vocab_count, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_train, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "src/lib/vocab_count.pyx":1
- * # distutils: sources = src/lib/glove/vocab_count.c             # <<<<<<<<<<<<<<
+  /* "src/lib/glove.pyx":1
+ * # distutils: sources = src/lib/glove/glove.c             # <<<<<<<<<<<<<<
  * # distutils: include_dirs = src/lib/glove
  * 
  */
@@ -1580,11 +1564,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init crucyble.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init crucyble.glove", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init crucyble.vocab_count");
+    PyErr_SetString(PyExc_ImportError, "init crucyble.glove");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -2046,37 +2030,6 @@ bad:
         return (target_type) value;\
     }
 
-/* CIntToPy */
-static CYTHON_INLINE PyObject* __Pyx_PyInt_From_int(int value) {
-    const int neg_one = (int) ((int) 0 - (int) 1), const_zero = (int) 0;
-    const int is_unsigned = neg_one > const_zero;
-    if (is_unsigned) {
-        if (sizeof(int) < sizeof(long)) {
-            return PyInt_FromLong((long) value);
-        } else if (sizeof(int) <= sizeof(unsigned long)) {
-            return PyLong_FromUnsignedLong((unsigned long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(int) <= sizeof(unsigned PY_LONG_LONG)) {
-            return PyLong_FromUnsignedLongLong((unsigned PY_LONG_LONG) value);
-#endif
-        }
-    } else {
-        if (sizeof(int) <= sizeof(long)) {
-            return PyInt_FromLong((long) value);
-#ifdef HAVE_LONG_LONG
-        } else if (sizeof(int) <= sizeof(PY_LONG_LONG)) {
-            return PyLong_FromLongLong((PY_LONG_LONG) value);
-#endif
-        }
-    }
-    {
-        int one = 1; int little = (int)*(unsigned char *)&one;
-        unsigned char *bytes = (unsigned char *)&value;
-        return _PyLong_FromByteArray(bytes, sizeof(int),
-                                     little, !is_unsigned);
-    }
-}
-
 /* CIntFromPy */
 static CYTHON_INLINE int __Pyx_PyInt_As_int(PyObject *x) {
     const int neg_one = (int) ((int) 0 - (int) 1), const_zero = (int) 0;
@@ -2264,195 +2217,6 @@ raise_neg_overflow:
     PyErr_SetString(PyExc_OverflowError,
         "can't convert negative value to int");
     return (int) -1;
-}
-
-/* CIntFromPy */
-static CYTHON_INLINE PY_LONG_LONG __Pyx_PyInt_As_PY_LONG_LONG(PyObject *x) {
-    const PY_LONG_LONG neg_one = (PY_LONG_LONG) ((PY_LONG_LONG) 0 - (PY_LONG_LONG) 1), const_zero = (PY_LONG_LONG) 0;
-    const int is_unsigned = neg_one > const_zero;
-#if PY_MAJOR_VERSION < 3
-    if (likely(PyInt_Check(x))) {
-        if (sizeof(PY_LONG_LONG) < sizeof(long)) {
-            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, PyInt_AS_LONG(x))
-        } else {
-            long val = PyInt_AS_LONG(x);
-            if (is_unsigned && unlikely(val < 0)) {
-                goto raise_neg_overflow;
-            }
-            return (PY_LONG_LONG) val;
-        }
-    } else
-#endif
-    if (likely(PyLong_Check(x))) {
-        if (is_unsigned) {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (PY_LONG_LONG) 0;
-                case  1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, digit, digits[0])
-                case 2:
-                    if (8 * sizeof(PY_LONG_LONG) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(PY_LONG_LONG) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(PY_LONG_LONG) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) >= 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0]));
-                        }
-                    }
-                    break;
-            }
-#endif
-#if CYTHON_COMPILING_IN_CPYTHON
-            if (unlikely(Py_SIZE(x) < 0)) {
-                goto raise_neg_overflow;
-            }
-#else
-            {
-                int result = PyObject_RichCompareBool(x, Py_False, Py_LT);
-                if (unlikely(result < 0))
-                    return (PY_LONG_LONG) -1;
-                if (unlikely(result == 1))
-                    goto raise_neg_overflow;
-            }
-#endif
-            if (sizeof(PY_LONG_LONG) <= sizeof(unsigned long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, unsigned long, PyLong_AsUnsignedLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(PY_LONG_LONG) <= sizeof(unsigned PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, unsigned PY_LONG_LONG, PyLong_AsUnsignedLongLong(x))
-#endif
-            }
-        } else {
-#if CYTHON_USE_PYLONG_INTERNALS
-            const digit* digits = ((PyLongObject*)x)->ob_digit;
-            switch (Py_SIZE(x)) {
-                case  0: return (PY_LONG_LONG) 0;
-                case -1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, sdigit, (sdigit) (-(sdigit)digits[0]))
-                case  1: __PYX_VERIFY_RETURN_INT(PY_LONG_LONG,  digit, +digits[0])
-                case -2:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 2:
-                    if (8 * sizeof(PY_LONG_LONG) > 1 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 2 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case -3:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 3:
-                    if (8 * sizeof(PY_LONG_LONG) > 2 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 3 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((((PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case -4:
-                    if (8 * sizeof(PY_LONG_LONG) - 1 > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, long, -(long) (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) (((PY_LONG_LONG)-1)*(((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-                case 4:
-                    if (8 * sizeof(PY_LONG_LONG) > 3 * PyLong_SHIFT) {
-                        if (8 * sizeof(unsigned long) > 4 * PyLong_SHIFT) {
-                            __PYX_VERIFY_RETURN_INT(PY_LONG_LONG, unsigned long, (((((((((unsigned long)digits[3]) << PyLong_SHIFT) | (unsigned long)digits[2]) << PyLong_SHIFT) | (unsigned long)digits[1]) << PyLong_SHIFT) | (unsigned long)digits[0])))
-                        } else if (8 * sizeof(PY_LONG_LONG) - 1 > 4 * PyLong_SHIFT) {
-                            return (PY_LONG_LONG) ((((((((((PY_LONG_LONG)digits[3]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[2]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[1]) << PyLong_SHIFT) | (PY_LONG_LONG)digits[0])));
-                        }
-                    }
-                    break;
-            }
-#endif
-            if (sizeof(PY_LONG_LONG) <= sizeof(long)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, long, PyLong_AsLong(x))
-#ifdef HAVE_LONG_LONG
-            } else if (sizeof(PY_LONG_LONG) <= sizeof(PY_LONG_LONG)) {
-                __PYX_VERIFY_RETURN_INT_EXC(PY_LONG_LONG, PY_LONG_LONG, PyLong_AsLongLong(x))
-#endif
-            }
-        }
-        {
-#if CYTHON_COMPILING_IN_PYPY && !defined(_PyLong_AsByteArray)
-            PyErr_SetString(PyExc_RuntimeError,
-                            "_PyLong_AsByteArray() not available in PyPy, cannot convert large numbers");
-#else
-            PY_LONG_LONG val;
-            PyObject *v = __Pyx_PyNumber_IntOrLong(x);
- #if PY_MAJOR_VERSION < 3
-            if (likely(v) && !PyLong_Check(v)) {
-                PyObject *tmp = v;
-                v = PyNumber_Long(tmp);
-                Py_DECREF(tmp);
-            }
- #endif
-            if (likely(v)) {
-                int one = 1; int is_little = (int)*(unsigned char *)&one;
-                unsigned char *bytes = (unsigned char *)&val;
-                int ret = _PyLong_AsByteArray((PyLongObject *)v,
-                                              bytes, sizeof(val),
-                                              is_little, !is_unsigned);
-                Py_DECREF(v);
-                if (likely(!ret))
-                    return val;
-            }
-#endif
-            return (PY_LONG_LONG) -1;
-        }
-    } else {
-        PY_LONG_LONG val;
-        PyObject *tmp = __Pyx_PyNumber_IntOrLong(x);
-        if (!tmp) return (PY_LONG_LONG) -1;
-        val = __Pyx_PyInt_As_PY_LONG_LONG(tmp);
-        Py_DECREF(tmp);
-        return val;
-    }
-raise_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "value too large to convert to PY_LONG_LONG");
-    return (PY_LONG_LONG) -1;
-raise_neg_overflow:
-    PyErr_SetString(PyExc_OverflowError,
-        "can't convert negative value to PY_LONG_LONG");
-    return (PY_LONG_LONG) -1;
 }
 
 /* CIntToPy */
