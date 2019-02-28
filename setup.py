@@ -2,13 +2,16 @@ from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
+ext_pkg_prefix = "src.crucyble.lib."
+
+ext_sources = ("vocab_count", "cooccur", "shuffle", "glove")
+ext_source_path = "src/lib/"
+ext_source_ext = ".pyx"
 
 extensions = [
-        Extension("crucyble.vocab_count", ["src/lib/vocab_count.pyx"]),
-        Extension("crucyble.cooccur", ["src/lib/cooccur.pyx"]),
-        Extension("crucyble.shuffle", ["src/lib/shuffle.pyx"]),
-        Extension("crucyble.glove", ["src/lib/glove.pyx"]),
-    ]
+    Extension(ext_pkg_prefix + e, [ext_source_path + e + ext_source_ext])
+    for e in ext_sources
+]
 
 setup(
     ext_modules=cythonize(extensions)
