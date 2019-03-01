@@ -2,7 +2,7 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 import toml
 
-ext_pkg_prefix = "src.crucyble.lib."
+ext_pkg_prefix = "crucyble.lib."
 
 ext_sources = ("vocab_count", "cooccur", "shuffle", "glove")
 ext_source_path = "src/lib/"
