@@ -1,4 +1,3 @@
-from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
@@ -13,6 +12,12 @@ extensions = [
     for e in ext_sources
 ]
 
-setup(
-    ext_modules=cythonize(extensions)
-)
+extensions = cythonize(extensions)
+
+def build(setup_kwargs):
+    """Needed for the poetry building interface."""
+
+    setup_kwargs.update({
+        'ext_modules' : extensions,
+        'include_dirs' : ["src/lib"],
+})
