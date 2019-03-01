@@ -7,9 +7,9 @@ install:
 script:
   - poetry build; twine check dist/*
 
-matrix:
-  include:
-    - os: linux
-      dist: xenial
-    - os: osx
-      osx_image: xcode7.2
+# matrix:
+#   include:
+#     - os: linux
+#       dist: xenial
+#     - os: osx
+#       osx_image: xcode7.2
