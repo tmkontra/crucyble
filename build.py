@@ -1,5 +1,6 @@
 from distutils.extension import Extension
 from Cython.Build import cythonize
+import toml
 
 ext_pkg_prefix = "src.crucyble.lib."
 
@@ -14,10 +15,22 @@ extensions = [
 
 extensions = cythonize(extensions)
 
+def readme():
+    with open("README.md", "r") as f:
+        return f.read()
+
+def pyproject_toml():
+    with open("pyproject.toml", "r") as f:
+        return toml.load(f)
+
 def build(setup_kwargs):
     """Needed for the poetry building interface."""
 
     setup_kwargs.update({
         'ext_modules' : extensions,
         'include_dirs' : ["src/lib"],
-})
+        'description': pyproject_toml()['tool']['poetry']['description'],
+        'long_description': readme(),
+        "long_description_content_type": "text/markdown"
+    })
+    print("setup kwargs:", setup_kwargs)

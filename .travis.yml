@@ -1,0 +1,15 @@
+language: python
+python:
+  - "3.7"
+  - "3.8-dev"
+install:
+  - pip install poetry twine
+script:
+  - poetry build; twine check dist/*
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+    - os: osx
+      osx_image: xcode7.2
