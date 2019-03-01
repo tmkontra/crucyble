@@ -5,8 +5,8 @@ python:
 install:
   - pip install poetry twine
 script:
-  - poetry install; poetry build; twine check dist/*
-
+  - poetry install; poetry build
+  - twine upload 
 # matrix:
 #   include:
 #     - os: linux
