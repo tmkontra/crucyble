@@ -13,7 +13,7 @@ extensions = [
     for e in ext_sources
 ]
 
-extensions = cyth       onize(extensions)
+extensions = cythonize(extensions)
 
 def readme():
     with open("README.md", "r") as f:
