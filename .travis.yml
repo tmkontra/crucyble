@@ -1,11 +1,10 @@
 language: python
 python:
   - "3.7"
-  - "3.8-dev"
 install:
   - pip install poetry twine
 script:
-  - poetry build; twine check dist/*
+  - poetry install; poetry build; twine check dist/*
 
 # matrix:
 #   include:
