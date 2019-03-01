@@ -22,6 +22,7 @@
 //    GlobalVectors@googlegroups.com
 //    http://nlp.stanford.edu/projects/glove/
 
+#include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,6 +48,7 @@ typedef struct hashrec {
 int verbose = 2; // 0, 1, or 2
 long long min_count = 1; // min occurrences for inclusion in vocab
 long long max_vocab = 0; // max_vocab = 0 for no limit
+FILE *logfile;
 
 
 /* Efficient string comparison */
@@ -131,14 +133,14 @@ int get_counts(char* corpus_file, char* output_file) {
     FILE *fid = fopen(corpus_file, "rb");
     FILE *fout = fopen(output_file, "wb");
     
-    fprintf(stderr, "BUILDING VOCABULARY\n");
-    if(verbose > 1) fprintf(stderr, "Processed %lld tokens.", i);
+    fprintf(logfile, "BUILDING VOCABULARY\n");
+    if(verbose > 1) fprintf(logfile, "Processed %lld tokens.", i);
     sprintf(format,"%%%ds",MAX_STRING_LENGTH);
     while(fscanf(fid, format, str) != EOF) { // Insert all tokens into hashtable
         hashinsert(vocab_hash, str);
-        if(((++i)%100000) == 0) if(verbose > 1) fprintf(stderr,"\033[11G%lld tokens.", i);
+        if(((++i)%100000) == 0) if(verbose > 1) fprintf(logfile,"\033[11G%lld tokens.", i);
     }
-    if(verbose > 1) fprintf(stderr, "\033[0GProcessed %lld tokens.\n", i);
+    if(verbose > 1) fprintf(logfile, "\033[0GProcessed %lld tokens.\n", i);
     vocab = malloc(sizeof(VOCAB) * vocab_size);
     for(i = 0; i < TSIZE; i++) { // Migrate vocab to array
         htmp = vocab_hash[i];
@@ -153,7 +155,7 @@ int get_counts(char* corpus_file, char* output_file) {
             htmp = htmp->next;
         }
     }
-    if(verbose > 1) fprintf(stderr, "Counted %lld unique words.\n", j);
+    if(verbose > 1) fprintf(logfile, "Counted %lld unique words.\n", j);
     if(max_vocab > 0 && max_vocab < j)
         // If the vocabulary exceeds limit, first sort full vocab by frequency without alphabetical tie-breaks.
         // This results in pseudo-random ordering for words with same frequency, so that when truncated, the words span whole alphabet
@@ -163,20 +165,26 @@ int get_counts(char* corpus_file, char* output_file) {
     
     for(i = 0; i < max_vocab; i++) {
         if(vocab[i].count < min_count) { // If a minimum frequency cutoff exists, truncate vocabulary
-            if(verbose > 0) fprintf(stderr, "Truncating vocabulary at min count %lld.\n",min_count);
+            if(verbose > 0) fprintf(logfile, "Truncating vocabulary at min count %lld.\n",min_count);
             break;
         }
         fprintf(fout, "%s %lld\n",vocab[i].word,vocab[i].count);
     }
     fclose(fout);
     
-    if(i == max_vocab && max_vocab < j) if(verbose > 0) fprintf(stderr, "Truncating vocabulary at size %lld.\n", max_vocab);
-    fprintf(stderr, "Using vocabulary of size %lld.\n\n", i);
+    if(i == max_vocab && max_vocab < j) if(verbose > 0) fprintf(logfile, "Truncating vocabulary at size %lld.\n", max_vocab);
+    fprintf(logfile, "Using vocabulary of size %lld.\n\n", i);
+    fclose(logfile);
     return 0;
 }
 
 
-int vocab_count(char* corpus_file, char* output_file, int verbosity, long long max_vocab_count, long long min_word_count) {
+int vocab_count(char* corpus_file, char* output_file, int verbosity, long long max_vocab_count, long long min_word_count, char* log_file) {
+    logfile = fopen(log_file, "w");
+    if (!logfile){
+        printf("Error opening log file: %s", strerror(errno));
+        exit(1);
+    }
     verbose = verbosity; max_vocab = max_vocab_count; min_count = min_word_count;
     return get_counts(corpus_file, output_file);
 }

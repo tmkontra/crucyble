@@ -3,5 +3,5 @@
 
 cimport _vocab_count
 
-def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count):
-    return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count)
+def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count, char* log_file):
+    return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count, log_file)

@@ -4,6 +4,6 @@
 cimport _cooccur
 
 def cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity, 
-            int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb):
+            int symmetry, int window_size_decl, char* overflow_file, float memory_limit_gb, char* log_file):
     return _cooccur.cooccur(corpus_file, vocab_file_, output_file, verbosity, 
-            symmetry, window_size_decl, overflow_file, memory_limit_gb)
+            symmetry, window_size_decl, overflow_file, memory_limit_gb, log_file)
