@@ -2,7 +2,7 @@ from distutils.extension import Extension
 from Cython.Build import cythonize
 import toml
 
-ext_pkg_prefix = "crucyble.lib."
+ext_pkg_prefix = "src.crucyble.lib."
 
 ext_sources = ("vocab_count", "cooccur", "shuffle", "glove")
 ext_source_path = "src/lib/"
@@ -13,7 +13,7 @@ extensions = [
     for e in ext_sources
 ]
 
-extensions = cythonize(extensions)
+extensions = cyth       onize(extensions)
 
 def readme():
     with open("README.md", "r") as f:
@@ -33,4 +33,3 @@ def build(setup_kwargs):
         'long_description': readme(),
         "long_description_content_type": "text/markdown"
     })
-    print("setup kwargs:", setup_kwargs)
