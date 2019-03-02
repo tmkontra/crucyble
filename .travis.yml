@@ -7,6 +7,14 @@ install:
 script:
   - poetry install
   - make build
+deploy:
+  provider: script
+  script: make upload
+  on:
+    branch: master
+    tags: true
+env:
+  - TWINE_USERNAME=ttymck
 # matrix:
 #   include:
 #     - os: linux
