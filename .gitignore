@@ -106,3 +106,6 @@ venv.bak/
 # local resources
 test/resource
 test/output
+
+# build artifacts
+README.rst
