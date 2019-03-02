@@ -5,4 +5,4 @@ clean:
 	-rm -r crucyble* dist build
 
 upload:
-	twine upload --repository-url https://test.pypi.org/legacy/ *.tar.gz
+	twine upload *.tar.gz
