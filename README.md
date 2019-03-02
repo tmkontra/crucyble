@@ -1,4 +1,7 @@
+
 # crucyble
+
+![Travis (.org) branch](https://img.shields.io/travis/ttymck/crucyble/master.svg) ![PyPI](https://img.shields.io/pypi/v/crucyble.svg) ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/crucyble.svg) ![PyPI - Wheel](https://img.shields.io/pypi/wheel/crucyble.svg) ![GitHub](https://img.shields.io/github/license/ttymck/crucyble.svg)
 
 A **Cy**thon Wrapped GloVe (Global Vectors for Word Representation)
 
