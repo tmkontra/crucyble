@@ -1,4 +1,4 @@
-poetry build
+poetry build -f sdist
 tar -xzf dist/*.tar.gz
 DIST_FOLDER=$(ls | grep crucyble)
 echo "Building in: ${DIST_FOLDER}"
