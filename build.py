@@ -26,13 +26,6 @@ def pyproject_toml():
     with open("pyproject.toml", "r") as f:
         return toml.load(f)
 
-classifiers = [
-    "Topic :: Scientific/Engineering",
-    "Intended Audience :: Science/Research",
-    "Programming Language :: Python :: 3.7",
-    "Development Status :: 2 - Pre-Alpha",
-]
-
 def build(setup_kwargs):
     """Needed for the poetry building interface."""
 
@@ -41,5 +34,4 @@ def build(setup_kwargs):
         'include_dirs' : ["src/lib"],
         'description': pyproject_toml()['tool']['poetry']['description'],
         'long_description_content_type': 'text/markdown',
-        'classifiers': classifiers,
     })
