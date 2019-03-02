@@ -19,9 +19,8 @@ extensions = [
 
 extensions = cythonize(extensions)
 
-def readme():
-    with open("README.md", "r") as f:
-        return f.read()
+with open("README.md", "r") as f:
+    long_description = f.read()
 
 def pyproject_toml():
     with open("pyproject.toml", "r") as f:
@@ -34,6 +33,5 @@ def build(setup_kwargs):
         'ext_modules' : extensions,
         'include_dirs' : ["src/lib"],
         'description': pyproject_toml()['tool']['poetry']['description'],
-        'long_description': readme(),
-        "long_description_content_type": "text/markdown"
+        'long_description_content_type': 'text/markdown',
     })

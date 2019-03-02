@@ -1,13 +1,15 @@
 [tool.poetry]
 name = "crucyble"
-version = "0.1.0.dev1"
+version = "0.1.6"
 description = "A Cython Wrapped GloVe"
 homepage = "https://github.com/ttymck/crucyble"
 repository = "https://github.com/ttymck/crucyble"
 authors = ["Tyler Kontra <tyler@tylerkontra.com>"]
 license = "MIT"
 include = ["src/**/*", "README.md"]
+exclude = ["test/**/*"]
 build = "build.py"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -15,6 +17,8 @@ python = "^3.7"
 [tool.poetry.dev-dependencies]
 Cython = "^0.29.5"
 toml = "^0.10.0"
+wheel = "^0.33.1"
+setuptools = "^40.8"
 
 [build-system]
 requires = ["poetry>=0.12", "setuptools"]
