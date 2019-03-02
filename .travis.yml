@@ -13,6 +13,7 @@ deploy:
   on:
     branch: master
     tags: true
+  skip_cleanup: true
 env:
   - TWINE_USERNAME=ttymck
 # matrix:

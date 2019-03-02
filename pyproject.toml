@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "crucyble"
-version = "0.1.0.dev2"
+version = "0.1.0.dev3"
 description = "A Cython Wrapped GloVe"
 homepage = "https://github.com/ttymck/crucyble"
 repository = "https://github.com/ttymck/crucyble"
