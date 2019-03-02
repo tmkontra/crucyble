@@ -12,7 +12,9 @@ A **Cy**thon Wrapped GloVe (Global Vectors for Word Representation)
 > 2. a severe test
 > 3. a vessel of a very refractory (see refractory entry 1 sense 3) material (such as porcelain) used for melting and calcining a substance that requires a   high degree of heat
 >
-> **Synonyms**: gauntlet, ...
+> **Synonyms**: gauntlet, ... 
+>
+> [source: merriam-webster](https://www.merriam-webster.com/dictionary/crucible)
 
 ## Overview
 
