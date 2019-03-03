@@ -78,6 +78,28 @@ class Cooccur(Stage):
         cls.log()
         return ret
 
+class Shuffle(Stage):
+    log = partial(log, __name__+".Shuffle")
+
+    @classmethod
+    def run(cls, coocrur_input):
+        cls.__shuffle(coocrur_input)
+    
+    @classmethod
+    def __shuffle(cls, cooccurrence_file, output_file=None, temp_file=None, verbosity=None, memory_limit_gb=None):
+        if not output_file:
+            from pathlib import Path
+            output_file = str(Path(str(cooccurrence_file)).parent / "cooccur.shuf.bin").encode('utf-8')
+        if not temp_file:
+            temp_file = str(cls.glove.output_path("shuf.tmp.bin")).encode('utf-8')
+        if not verbosity:
+            verbosity = 1
+        if not memory_limit_gb:
+            memory_limit_gb = 1.0
+        ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+        cls.log()
+        return ret
+
 class Train:
     class Output(Enum):
         TEXT = 0

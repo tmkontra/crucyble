@@ -18,6 +18,13 @@ class GloVe(metaclass=LoggingMeta):
 
     # TODO: add logging to other library sources!
     _default_verbosity = Verbosity(1)
+    _default_output_path = Path.home() / ".cache" / "crucyble"
+
+    @classmethod
+    def output_path(cls, filename):
+        if not cls._default_output_path.exists():
+            cls._default_output_path.mkdir(exist_ok=True)
+        return cls._default_output_path / filename
     
     @classmethod
     @with_paths(ignore="output_path") # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
@@ -29,14 +36,21 @@ class GloVe(metaclass=LoggingMeta):
         return VocabCount.run(corpus, output_path, max_vocab, min_word_count, verbose=verbose)
 
     @classmethod
-    @with_paths()
-    def cooccur(cls, corpus, vocab, cooccur_bin,
-            symmetry: int, context_window_size: int,
-            memory_limit: float, verbose=None, tmp_overflow_file: Path=None):
+    @with_paths(ignore=["output_path","tmp_overflow_file"])
+    def cooccur(cls, corpus, vocab,
+            symmetry: int, context_window_size: int, memory_limit: float,
+            output_path=None, verbose=None, tmp_overflow_file: Path=None):
+        if not output_path:
+            output_path = cls.output_path("cooccur.bin")
         if verbose is None:
             verbose = cls._default_verbosity
-        return Cooccur.run(corpus, vocab, cooccur_bin, symmetry, context_window_size,
+        return Cooccur.run(corpus, vocab, output_path, symmetry, context_window_size,
                         memory_limit, verbose=verbose, overflow_file=tmp_overflow_file)
+    
+    @classmethod
+    @with_paths()
+    def shuffle(cls, cooccur_input, **kwargs):
+        return Shuffle.run(cooccur_input)
 
     @classmethod
     def from_corpus(cls, *args, **kwargs):

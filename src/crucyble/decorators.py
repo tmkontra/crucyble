@@ -19,7 +19,7 @@ def with_paths(ignore=None):
     if isinstance(ignore, str):
         ignore_names = (ignore,)
     else:
-        ignore_names = []
+        ignore_names = ignore or []
     def _decorator(lib_fn):
         def _paths_to_bytes(*args, **kwargs):
             l_args = list(args)
@@ -34,6 +34,7 @@ def with_paths(ignore=None):
             d_kwargs = dict(kwargs)
             for kwarg, val in d_kwargs.items():
                 if isinstance(val, PATH_TYPES):
+                    print(kwarg)
                     if not val.exists() and kwarg not in ignore_names:
                         throw_not_exists(lib_fn, kwarg, val)
                     val = str(val).encode('utf-8')

@@ -4,7 +4,7 @@ from pathlib import Path
 
 class LoggingMeta(type):
     _is_logging = True
-    _log_location = Path.home() / ".crucyble" / "{}.log".format(datetime.now().isoformat())
+    _log_location = Path.home() / ".cache" / "{}.log".format(datetime.now().isoformat())
 
     def no_log(self):
         self._is_logging = False
