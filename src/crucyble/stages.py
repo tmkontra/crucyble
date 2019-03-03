@@ -46,12 +46,12 @@ class VocabCount(Stage):
         def no_limit(cls):
             return cls(0)
 
-    @staticmethod
-    def __vocab_count(corpus, vocab, max_vocab, min_word_count, verbose):
+    @classmethod
+    def __vocab_count(cls, corpus, vocab, max_vocab, min_word_count, verbose):
         if isinstance(max_vocab, (int, float)):
-            max_vocab = VocabCount.MaxVocab(int(max_vocab))
-        ret = lib.vocab_count.vocab_count(corpus, vocab, verbose.value, max_vocab, min_word_count, Stage.glove.log_location_char)
-        VocabCount.log()
+            max_vocab = cls.MaxVocab(int(max_vocab))
+        ret = lib.vocab_count.vocab_count(corpus, vocab, verbose.value, max_vocab, min_word_count, cls.glove.log_location_char)
+        cls.log()
         return ret 
 
 
@@ -69,13 +69,13 @@ class Cooccur(Stage):
         Asymmetric = 0
         Symmetric = 1
 
-    @staticmethod
-    def __cooccur(corpus, vocab, coocur_bin, symmetry: Symmetry, window_size_decl: int, memory_limit_gb: float, verbose, overflow_file):
+    @classmethod
+    def __cooccur(cls, corpus, vocab, coocur_bin, symmetry: Symmetry, window_size_decl: int, memory_limit_gb: float, verbose, overflow_file):
         if isinstance(symmetry, int):
-            symmetry = Cooccur.Symmetry(symmetry)
+            symmetry = cls.Symmetry(symmetry)
         symmetry = symmetry.value
-        ret = lib.cooccur.cooccur(corpus, vocab, coocur_bin, verbose.value, symmetry, window_size_decl, overflow_file, memory_limit_gb, Stage.glove.log_location_char)
-        Cooccur.log()
+        ret = lib.cooccur.cooccur(corpus, vocab, coocur_bin, verbose.value, symmetry, window_size_decl, overflow_file, memory_limit_gb, cls.glove.log_location_char)
+        cls.log()
         return ret
 
 class Train:

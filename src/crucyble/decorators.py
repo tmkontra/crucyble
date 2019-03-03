@@ -1,4 +1,4 @@
-"""Decorators to do implicit conversion of arguments into libglove extensions
+"""Decorators to do implicit conversion of arguments into lib/glove extensions
 """
 import inspect
 from pathlib import Path, PosixPath, PurePosixPath, PureWindowsPath
@@ -6,6 +6,9 @@ from pathlib import Path, PosixPath, PurePosixPath, PureWindowsPath
 PATH_TYPES = (Path, PosixPath, PurePosixPath, PurePosixPath)
 
 def with_paths(ignore=None):
+    """This casts any arguments of Path types to utf-8 character strings i.e. b'/opt/file.txt'
+    optional argument `ignore` is used to skip any specified **kwargs**
+    """
     if isinstance(ignore, str):
         ignore_names = (ignore,)
     else:
