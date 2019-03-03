@@ -8,6 +8,7 @@ PKG_INFO="$DIST_FOLDER/PKG-INFO"
 echo "$DESC_TYPE" >> $PKG_INFO
 echo "$DESC" >> $PKG_INFO
 # add classifiers to PKG-INFO
+IFS="\n"
 while read -r line;
     do sed -i "/Requires-Python:/aClassifier: $line" $PKG_INFO;
 done <<< $(cat etc/classifiers.txt);
