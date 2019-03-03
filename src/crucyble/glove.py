@@ -48,9 +48,9 @@ class GloVe(metaclass=LoggingMeta):
                         memory_limit, verbose=verbose, overflow_file=tmp_overflow_file)
     
     @classmethod
-    @with_paths()
-    def shuffle(cls, cooccur_input, **kwargs):
-        return Shuffle.run(cooccur_input)
+    @with_paths(ignore="output_file")
+    def shuffle(cls, cooccur_input, output_file=None, **kwargs):
+        return Shuffle.run(cooccur_input, output_file)
 
     @classmethod
     def from_corpus(cls, *args, **kwargs):

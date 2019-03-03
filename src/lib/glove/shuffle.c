@@ -85,9 +85,15 @@ int shuffle_merge(int num, char* output_file) {
     int fidcounter = 0;
     CREC *array;
     char filename[MAX_STRING_LENGTH];
-    FILE **fid, *fout = fopen(output_file, "wb");
+    FILE **fid;
+    FILE *fout = fopen(output_file, "wb");
+    if (!fout) {
+        fprintf(stderr, "ERROR: unable to open output file %s", output_file);
+        return 1;
+    }
     
     array = malloc(sizeof(CREC) * array_size);
+
     fid = malloc(sizeof(FILE) * num);
     for(fidcounter = 0; fidcounter < num; fidcounter++) { //num = number of temporary files to merge
         sprintf(filename,"%s_%04d.bin",file_head, fidcounter);
@@ -97,7 +103,6 @@ int shuffle_merge(int num, char* output_file) {
             return 1;
         }
     }
-    if(verbose > 0) fprintf(stderr, "Merging temp files: processed %ld lines.", l);
     
     while(1) { //Loop until EOF in all files
         i = 0;
@@ -113,7 +118,7 @@ int shuffle_merge(int num, char* output_file) {
         if(i == 0) break;
         l += i;
         fyshuffle(array, i-1); // Shuffles lines between temp files
-        write_chunk(array,i,fout);
+        write_chunk(array, i, fout);
         if(verbose > 0) fprintf(stderr, "\033[31G%ld lines.", l);
     }
     fprintf(stderr, "\033[0GMerging temp files: processed %ld lines.", l);
@@ -134,9 +139,13 @@ int shuffle_by_chunks(char* input_file, char* output_file) {
     int fidcounter = 0;
     char filename[MAX_STRING_LENGTH];
     CREC *array;
-    FILE *fin = fopen(input_file, "rb"), *fid;
+    FILE *fin = fopen(input_file, "rb");
+    if (!fin) {
+        fprintf(stderr, "ERROR: unable to open file %s\n", input_file);
+        return 1;
+    }
+    FILE *fid;
     array = malloc(sizeof(CREC) * array_size);
-    
     fprintf(stderr,"SHUFFLING COOCCURRENCES\n");
     if(verbose > 0) fprintf(stderr,"array size: %lld\n", array_size);
     sprintf(filename,"%s_%04d.bin",file_head, fidcounter);
@@ -178,13 +187,34 @@ int shuffle_by_chunks(char* input_file, char* output_file) {
     return shuffle_merge(fidcounter + 1, output_file); // Merge and shuffle together temporary files
 }
 
+int ensure_memory_allocation(current_array_size) {
+    int new_array_size;
+    new_array_size = current_array_size;
+    CREC *array;
+    while(1) {
+        new_array_size = new_array_size * 0.95;
+        fprintf(stderr, "adjusting array size. new size = %d\n", new_array_size);
+        array = malloc(sizeof(CREC) * new_array_size);
+        if (array) {
+            free(array);
+            return new_array_size;
+        }
+    }
+}
+
 int shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb) {
     file_head = malloc(sizeof(char) * MAX_STRING_LENGTH);
     verbose = verbosity;
     file_head = temp_file;
     memory_limit = memory_limit_gb;
     // TODO: investigate SIGSEGV when memory > 2.0
-    array_size = (long long) (0.80 * (real)memory_limit * 1073741824/(sizeof(CREC)));
+    fprintf(stderr, "allocating array_size!\n");
+    array_size = (long long) (0.95 * (real)memory_limit * 1073741824/(sizeof(CREC)));
+    array_size = ensure_memory_allocation(array_size);
+    fprintf(stderr, "array size = %d\n", array_size);
+    
+    CREC *array;
+    array = malloc(sizeof(CREC) * array_size);
     // TODO: add back in array_size override
     return shuffle_by_chunks(cooccurrence_file, output_file);
 }

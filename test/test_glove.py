@@ -16,8 +16,8 @@ GloVe.no_log()
 
 maxvocab = 100e2
 min_count = 10 
-GloVe.vocab_count(corpus, maxvocab, min_count, output_path=vocab)
-overflow_file = test_dir / 'tmp'
-GloVe.cooccur(corpus, vocab, 1, 15, 8.0, tmp_overflow_file=overflow_file, output_path=cooccur_bin)
-GloVe.shuffle(cooccur_bin)#, shuf_bin, b'test/output/shuf', 2, 2.2)
+# GloVe.vocab_count(corpus, maxvocab, min_count, output_path=vocab)
+# overflow_file = test_dir / 'tmp'
+# GloVe.cooccur(corpus, vocab, 1, 15, 8.0, tmp_overflow_file=overflow_file, output_path=cooccur_bin)
+GloVe.shuffle(cooccur_bin, shuf_bin)#, shuf_bin, b'test/output/shuf', 2, 2.2)
 # glove.train(shuf_bin, vocab, vectors, gradsq, 2)
