@@ -8,10 +8,9 @@ PKG_INFO="$DIST_FOLDER/PKG-INFO"
 echo "$DESC_TYPE" >> $PKG_INFO
 echo "$DESC" >> $PKG_INFO
 # add classifiers to PKG-INFO
-IFS="\n"
 while read -r line;
     do sed -i "/Requires-Python:/aClassifier: $line" $PKG_INFO;
-done <<< $(cat etc/classifiers.txt);
+done < etc/classifiers.txt
 cat $PKG_INFO
 # set long description content type in setup.py
 LDCT="    'long_description_content_type': 'text/markdown',"
