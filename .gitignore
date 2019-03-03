@@ -109,3 +109,5 @@ test/output
 
 # build artifacts
 README.rst
+/*.tar.gz
+/crucyble-*
