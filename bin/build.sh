@@ -11,6 +11,7 @@ echo "$DESC" >> $PKG_INFO
 while read -r line;
     do sed -i "/Requires-Python:/aClassifier: $line" $PKG_INFO;
 done <<< $(cat etc/classifiers.txt);
+cat $PKG_INFO
 # set long description content type in setup.py
 LDCT="    'long_description_content_type': 'text/markdown',"
 sed -i "/'packages': packages/a${LDCT}" $DIST_FOLDER/setup.py
