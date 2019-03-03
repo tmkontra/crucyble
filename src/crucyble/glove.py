@@ -20,11 +20,13 @@ class GloVe(metaclass=LoggingMeta):
     _default_verbosity = Verbosity(1)
     
     @classmethod
-    @with_paths() # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
-    def vocab_count(cls, corpus, vocab, max_vocab: MaxVocab, min_word_count, verbose=None):
+    @with_paths(ignore="output_path") # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
+    def vocab_count(cls, corpus, max_vocab: MaxVocab, min_word_count, verbose=None, output_path=None):
         if verbose is None:
             verbose = cls._default_verbosity
-        return VocabCount.run(corpus, vocab, max_vocab, min_word_count, verbose=verbose)
+        if output_path is None:
+            output_path = corpus.parent / "vocab.txt"
+        return VocabCount.run(corpus, output_path, max_vocab, min_word_count, verbose=verbose)
 
     @classmethod
     @with_paths()
