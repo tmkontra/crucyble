@@ -363,14 +363,14 @@ int train(char* input_file_, char* vocab_file_, char* output_vector_files, int d
     logfile = fopen(log_file, "w");
 
     verbose = verbosity;
-    input_file = input_file_;
-    vocab_file = vocab_file_;
-    save_W_file = output_vector_files;
+    strcpy(input_file, input_file_);
+    strcpy(vocab_file, vocab_file_);
+    strcpy(save_W_file, output_vector_files);
     // TODO: save_gradsq is optional (boolean), how to have kwarg save_gradsq_file for fname?
     if (!strcmp(opt_output_gradsq_files, "")) {
-        save_gradsq_file = opt_output_gradsq_files; save_gradsq = 1;
+        strcpy(save_gradsq_file, opt_output_gradsq_files); save_gradsq = 1;
     } else if (do_save_gradsq_files == 1) {
-        save_gradsq_file = "gradsq"; save_gradsq = do_save_gradsq_files;
+        strcpy(save_gradsq_file, "gradsq"); save_gradsq = do_save_gradsq_files;
     } else {
         save_gradsq = 0;
     }
@@ -394,5 +394,6 @@ int train(char* input_file_, char* vocab_file_, char* output_vector_files, int d
     free(input_file);
     free(save_W_file);
     free(save_gradsq_file);
+    fclose(logfile);
     return result;
 }
