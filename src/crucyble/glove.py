@@ -53,5 +53,10 @@ class GloVe(metaclass=LoggingMeta):
         return Shuffle.run(cooccur_input, output_file)
 
     @classmethod
+    @with_paths(ignore=['vector_files', 'gradsq_files'])
+    def train(cls, cooccur_file, vocab_file, vector_files=None, gradsq_files=None, verbosity=None):
+        return Train.run(cooccur_file, vocab_file, vector_files, gradsq_files, verbosity)
+
+    @classmethod
     def from_corpus(cls, *args, **kwargs):
         pass

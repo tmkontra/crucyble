@@ -22,12 +22,13 @@ class Stage(ABC):
     def run(self):
         """The entry point for a stage"""
 
-def log(name):
+def log(class_name):
+    name = __name__ + "." + class_name
     if Stage.glove.is_logging:
         Stage.logging_callback(logging.getLogger(name), Stage.glove.log_location)
 
 class VocabCount(Stage):
-    log = partial(log, __name__+".VocabCount")
+    log = partial(log, "VocabCount")
 
     @classmethod
     @with_verbosity
@@ -56,7 +57,7 @@ class VocabCount(Stage):
 
 
 class Cooccur(Stage):
-    log = partial(log, __name__+".Cooccur")
+    log = partial(log, "Cooccur")
 
     @classmethod
     @with_verbosity
@@ -79,11 +80,11 @@ class Cooccur(Stage):
         return ret
 
 class Shuffle(Stage):
-    log = partial(log, __name__+".Shuffle")
+    log = partial(log, "Shuffle")
 
     @classmethod
-    def run(cls, coocrur_input, output_file):
-        cls.__shuffle(coocrur_input, output_file)
+    def run(cls, cooccur_input, output_file):
+        cls.__shuffle(cooccur_input, output_file)
     
     @classmethod
     def __shuffle(cls, cooccurrence_file, output_file, temp_file=None, verbosity=None, memory_limit_gb=None):
@@ -94,10 +95,13 @@ class Shuffle(Stage):
         if not memory_limit_gb:
             memory_limit_gb = 8.0
         ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+        # TODO: log to file in shuffle.c
         cls.log()
         return ret
 
 class Train:
+    log = partial(log, "Train")
+    
     class Output(Enum):
         TEXT = 0
         BINARY = 1
@@ -109,6 +113,17 @@ class Train:
         ALL = 0
         WORD_NO_BIAS = 1
         WORD_AND_CONTEXT_NO_BIAS = 2
+
+    @classmethod
+    def run(cls, cooccurrence_input_file, vocab_file, vector_files_prefix=None, gradsq_files_prefix=None, verbosity=None):
+        vector_files_prefix = vector_files_prefix or "vectors"
+        gradsq_files_prefix = gradsq_files_prefix or "gradsq"
+        verbosity = verbosity or 1
+        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix, verbosity)
+
+    @classmethod
+    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity, **kwargs):    
+        lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity)
 
 MaxVocab = EnumUnion(VocabCount.MaxVocab)
 Symmetry = EnumUnion(Cooccur.Symmetry)

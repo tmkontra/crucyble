@@ -193,10 +193,10 @@ int ensure_memory_allocation(current_array_size) {
     CREC *array;
     while(1) {
         new_array_size = new_array_size * 0.95;
-        fprintf(stderr, "adjusting array size. new size = %d\n", new_array_size);
         array = malloc(sizeof(CREC) * new_array_size);
         if (array) {
             free(array);
+            fprintf(stderr, "adjusted array size. new size = %d\n", new_array_size);
             return new_array_size;
         }
     }

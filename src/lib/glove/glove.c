@@ -261,7 +261,7 @@ int train_glove() {
     return save_params();
 }
 
-int train(char* input_file_, char* vocab_file_, char* output_vector_files, char* output_gradsq_files, int verbosity) {
+int train(char* input_file_, char* vocab_file_, char* output_vector_files, int do_save_gradsq_files, char* opt_output_gradsq_files, int verbosity) {
     int i;
     FILE *fid;
     vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
@@ -274,7 +274,13 @@ int train(char* input_file_, char* vocab_file_, char* output_vector_files, char*
     vocab_file = vocab_file_;
     save_W_file = output_vector_files;
     // TODO: save_gradsq is optional (boolean), how to have kwarg save_gradsq_file for fname?
-    save_gradsq_file = output_gradsq_files; save_gradsq = 1;
+    if (opt_output_gradsq_files != "") {
+        save_gradsq_file = opt_output_gradsq_files; save_gradsq = 1;
+    } else if (do_save_gradsq_files == 1) {
+        do_save_gradsq_files = "gradsq"; save_gradsq = do_save_gradsq_files;
+    } else {
+        save_gradsq = 0;
+    }
 
     //default model
     if(model != 0 && model != 1) model = 2;
