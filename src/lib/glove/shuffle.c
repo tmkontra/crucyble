@@ -120,15 +120,16 @@ int shuffle_merge(int num, char* output_file) {
         l += i;
         fyshuffle(array, i-1); // Shuffles lines between temp files
         write_chunk(array, i, fout);
-        if(verbose > 0) fprintf(logfile, "\033[31G%ld lines.", l);
     }
     for(fidcounter = 0; fidcounter < num; fidcounter++) {
         fclose(fid[fidcounter]);
         sprintf(filename,"%s_%04d.bin",file_head, fidcounter);
         remove(filename);
     }
-    free(array);
     fclose(fout);
+    if(verbose > 0) fprintf(logfile, "\033[31G%ld lines.", l);
+    fclose(logfile);
+    free(array);
     return 0;
 }
 
@@ -178,7 +179,6 @@ int shuffle_by_chunks(char* input_file, char* output_file) {
     l += i;
     fclose(fid);
     free(array);
-    fclose(logfile);
     return shuffle_merge(fidcounter + 1, output_file); // Merge and shuffle together temporary files
 }
 
