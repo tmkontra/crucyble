@@ -9,6 +9,7 @@ from crucyble.types import EnumUnion
 from crucyble.verbosity import Verbosity, with_verbosity
 
 class Stage(ABC):
+    glove = None # set in __init__.py (i.e. at import time)
     logging_callback = logging_callback
     """A single unit of work for the GloVe pipeline.
     These class provide methods that transform arguments to the corresponding C types.
@@ -34,7 +35,7 @@ class VocabCount(Stage):
     @with_verbosity
     def run(cls, corpus, vocab, max_vocab, min_word_count, verbose=None):
         if verbose is None:
-            verbose = GloVe._default_verbosity
+            verbose = cls.glove._default_verbosity
         return cls.__vocab_count(corpus, vocab, max_vocab, min_word_count, verbose)
 
     class MaxVocab(int):
@@ -87,15 +88,14 @@ class Shuffle(Stage):
         cls.__shuffle(cooccur_input, output_file)
     
     @classmethod
-    def __shuffle(cls, cooccurrence_file, output_file, temp_file=None, verbosity=None, memory_limit_gb=None):
+    def __shuffle(cls, cooccurrence_file, output_file, temp_file=None, verbosity=None, requested_memory_limit_gb=None):
         if not temp_file:
             temp_file = str(cls.glove.output_path("shuf.tmp.bin")).encode('utf-8')
         if not verbosity:
             verbosity = 1
-        if not memory_limit_gb:
-            memory_limit_gb = 8.0
-        ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
-        # TODO: log to file in shuffle.c
+        if not requested_memory_limit_gb:
+            requested_memory_limit_gb = 8.0
+        ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, requested_memory_limit_gb, cls.glove.log_location_char)
         cls.log()
         return ret
 

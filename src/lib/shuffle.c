@@ -6,13 +6,13 @@
         "include_dirs": [
             "src/lib/glove"
         ],
-        "name": "src.crucyble.lib.shuffle",
+        "name": "crucyble.lib.shuffle",
         "sources": [
             "src/lib/shuffle.pyx",
             "src/lib/glove/shuffle.c"
         ]
     },
-    "module_name": "src.crucyble.lib.shuffle"
+    "module_name": "crucyble.lib.shuffle"
 }
 END: Cython Metadata */
 
@@ -601,8 +601,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__src__crucyble__lib__shuffle
-#define __PYX_HAVE_API__src__crucyble__lib__shuffle
+#define __PYX_HAVE__crucyble__lib__shuffle
+#define __PYX_HAVE_API__crucyble__lib__shuffle
 /* Early includes */
 #include "glove/shuffle.h"
 #ifdef _OPENMP
@@ -1023,16 +1023,17 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from '_shuffle' */
 
-/* Module declarations from 'src.crucyble.lib.shuffle' */
-#define __Pyx_MODULE_NAME "src.crucyble.lib.shuffle"
-extern int __pyx_module_is_main_src__crucyble__lib__shuffle;
-int __pyx_module_is_main_src__crucyble__lib__shuffle = 0;
+/* Module declarations from 'crucyble.lib.shuffle' */
+#define __Pyx_MODULE_NAME "crucyble.lib.shuffle"
+extern int __pyx_module_is_main_crucyble__lib__shuffle;
+int __pyx_module_is_main_crucyble__lib__shuffle = 0;
 
-/* Implementation of 'src.crucyble.lib.shuffle' */
+/* Implementation of 'crucyble.lib.shuffle' */
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_shuffle[] = "shuffle";
+static const char __pyx_k_log_file[] = "log_file";
 static const char __pyx_k_temp_file[] = "temp_file";
 static const char __pyx_k_verbosity[] = "verbosity";
 static const char __pyx_k_output_file[] = "output_file";
@@ -1040,20 +1041,21 @@ static const char __pyx_k_memory_limit_gb[] = "memory_limit_gb";
 static const char __pyx_k_cooccurrence_file[] = "cooccurrence_file";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_src_lib_shuffle_pyx[] = "src/lib/shuffle.pyx";
-static const char __pyx_k_src_crucyble_lib_shuffle[] = "src.crucyble.lib.shuffle";
+static const char __pyx_k_crucyble_lib_shuffle[] = "crucyble.lib.shuffle";
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_cooccurrence_file;
+static PyObject *__pyx_n_s_crucyble_lib_shuffle;
+static PyObject *__pyx_n_s_log_file;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_memory_limit_gb;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_output_file;
 static PyObject *__pyx_n_s_shuffle;
-static PyObject *__pyx_n_s_src_crucyble_lib_shuffle;
 static PyObject *__pyx_kp_s_src_lib_shuffle_pyx;
 static PyObject *__pyx_n_s_temp_file;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_verbosity;
-static PyObject *__pyx_pf_3src_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_cooccurrence_file, char *__pyx_v_output_file, char *__pyx_v_temp_file, int __pyx_v_verbosity, float __pyx_v_memory_limit_gb); /* proto */
+static PyObject *__pyx_pf_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_cooccurrence_file, char *__pyx_v_output_file, char *__pyx_v_temp_file, int __pyx_v_verbosity, float __pyx_v_memory_limit_gb, char *__pyx_v_log_file); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
@@ -1061,29 +1063,32 @@ static PyObject *__pyx_codeobj__2;
 /* "src/lib/shuffle.pyx":6
  * cimport _shuffle
  * 
- * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb):             # <<<<<<<<<<<<<<
- *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+ * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb, char* log_file):             # <<<<<<<<<<<<<<
+ *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb, log_file)
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_3src_8crucyble_3lib_7shuffle_1shuffle = {"shuffle", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3src_8crucyble_3lib_7shuffle_1shuffle, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_3src_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8crucyble_3lib_7shuffle_1shuffle = {"shuffle", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8crucyble_3lib_7shuffle_1shuffle, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char *__pyx_v_cooccurrence_file;
   char *__pyx_v_output_file;
   char *__pyx_v_temp_file;
   int __pyx_v_verbosity;
   float __pyx_v_memory_limit_gb;
+  char *__pyx_v_log_file;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("shuffle (wrapper)", 0);
   {
-    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_cooccurrence_file,&__pyx_n_s_output_file,&__pyx_n_s_temp_file,&__pyx_n_s_verbosity,&__pyx_n_s_memory_limit_gb,0};
-    PyObject* values[5] = {0,0,0,0,0};
+    static PyObject **__pyx_pyargnames[] = {&__pyx_n_s_cooccurrence_file,&__pyx_n_s_output_file,&__pyx_n_s_temp_file,&__pyx_n_s_verbosity,&__pyx_n_s_memory_limit_gb,&__pyx_n_s_log_file,0};
+    PyObject* values[6] = {0,0,0,0,0,0};
     if (unlikely(__pyx_kwds)) {
       Py_ssize_t kw_args;
       const Py_ssize_t pos_args = PyTuple_GET_SIZE(__pyx_args);
       switch (pos_args) {
+        case  6: values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
+        CYTHON_FALLTHROUGH;
         case  5: values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
         CYTHON_FALLTHROUGH;
         case  4: values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
@@ -1106,31 +1111,37 @@ static PyObject *__pyx_pw_3src_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_output_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 5, 5, 1); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, 1); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_temp_file)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 5, 5, 2); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, 2); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (likely((values[3] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_verbosity)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 5, 5, 3); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, 3); __PYX_ERR(0, 6, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (likely((values[4] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_memory_limit_gb)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 5, 5, 4); __PYX_ERR(0, 6, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, 4); __PYX_ERR(0, 6, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  5:
+        if (likely((values[5] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_log_file)) != 0)) kw_args--;
+        else {
+          __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, 5); __PYX_ERR(0, 6, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "shuffle") < 0)) __PYX_ERR(0, 6, __pyx_L3_error)
       }
-    } else if (PyTuple_GET_SIZE(__pyx_args) != 5) {
+    } else if (PyTuple_GET_SIZE(__pyx_args) != 6) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = PyTuple_GET_ITEM(__pyx_args, 0);
@@ -1138,29 +1149,31 @@ static PyObject *__pyx_pw_3src_8crucyble_3lib_7shuffle_1shuffle(PyObject *__pyx_
       values[2] = PyTuple_GET_ITEM(__pyx_args, 2);
       values[3] = PyTuple_GET_ITEM(__pyx_args, 3);
       values[4] = PyTuple_GET_ITEM(__pyx_args, 4);
+      values[5] = PyTuple_GET_ITEM(__pyx_args, 5);
     }
     __pyx_v_cooccurrence_file = __Pyx_PyObject_AsWritableString(values[0]); if (unlikely((!__pyx_v_cooccurrence_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
     __pyx_v_output_file = __Pyx_PyObject_AsWritableString(values[1]); if (unlikely((!__pyx_v_output_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
     __pyx_v_temp_file = __Pyx_PyObject_AsWritableString(values[2]); if (unlikely((!__pyx_v_temp_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
     __pyx_v_verbosity = __Pyx_PyInt_As_int(values[3]); if (unlikely((__pyx_v_verbosity == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
     __pyx_v_memory_limit_gb = __pyx_PyFloat_AsFloat(values[4]); if (unlikely((__pyx_v_memory_limit_gb == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
+    __pyx_v_log_file = __Pyx_PyObject_AsWritableString(values[5]); if (unlikely((!__pyx_v_log_file) && PyErr_Occurred())) __PYX_ERR(0, 6, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("shuffle", 1, 5, 5, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("shuffle", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.crucyble.lib.shuffle.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.lib.shuffle.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_8crucyble_3lib_7shuffle_shuffle(__pyx_self, __pyx_v_cooccurrence_file, __pyx_v_output_file, __pyx_v_temp_file, __pyx_v_verbosity, __pyx_v_memory_limit_gb);
+  __pyx_r = __pyx_pf_8crucyble_3lib_7shuffle_shuffle(__pyx_self, __pyx_v_cooccurrence_file, __pyx_v_output_file, __pyx_v_temp_file, __pyx_v_verbosity, __pyx_v_memory_limit_gb, __pyx_v_log_file);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_cooccurrence_file, char *__pyx_v_output_file, char *__pyx_v_temp_file, int __pyx_v_verbosity, float __pyx_v_memory_limit_gb) {
+static PyObject *__pyx_pf_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_cooccurrence_file, char *__pyx_v_output_file, char *__pyx_v_temp_file, int __pyx_v_verbosity, float __pyx_v_memory_limit_gb, char *__pyx_v_log_file) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1168,11 +1181,11 @@ static PyObject *__pyx_pf_3src_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyO
 
   /* "src/lib/shuffle.pyx":7
  * 
- * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb):
- *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)             # <<<<<<<<<<<<<<
+ * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb, char* log_file):
+ *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb, log_file)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(shuffle(__pyx_v_cooccurrence_file, __pyx_v_output_file, __pyx_v_temp_file, __pyx_v_verbosity, __pyx_v_memory_limit_gb)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(shuffle(__pyx_v_cooccurrence_file, __pyx_v_output_file, __pyx_v_temp_file, __pyx_v_verbosity, __pyx_v_memory_limit_gb, __pyx_v_log_file)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -1181,14 +1194,14 @@ static PyObject *__pyx_pf_3src_8crucyble_3lib_7shuffle_shuffle(CYTHON_UNUSED PyO
   /* "src/lib/shuffle.pyx":6
  * cimport _shuffle
  * 
- * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb):             # <<<<<<<<<<<<<<
- *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+ * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb, char* log_file):             # <<<<<<<<<<<<<<
+ *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb, log_file)
  */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.crucyble.lib.shuffle.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.lib.shuffle.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1244,12 +1257,13 @@ static struct PyModuleDef __pyx_moduledef = {
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_cooccurrence_file, __pyx_k_cooccurrence_file, sizeof(__pyx_k_cooccurrence_file), 0, 0, 1, 1},
+  {&__pyx_n_s_crucyble_lib_shuffle, __pyx_k_crucyble_lib_shuffle, sizeof(__pyx_k_crucyble_lib_shuffle), 0, 0, 1, 1},
+  {&__pyx_n_s_log_file, __pyx_k_log_file, sizeof(__pyx_k_log_file), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_memory_limit_gb, __pyx_k_memory_limit_gb, sizeof(__pyx_k_memory_limit_gb), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_output_file, __pyx_k_output_file, sizeof(__pyx_k_output_file), 0, 0, 1, 1},
   {&__pyx_n_s_shuffle, __pyx_k_shuffle, sizeof(__pyx_k_shuffle), 0, 0, 1, 1},
-  {&__pyx_n_s_src_crucyble_lib_shuffle, __pyx_k_src_crucyble_lib_shuffle, sizeof(__pyx_k_src_crucyble_lib_shuffle), 0, 0, 1, 1},
   {&__pyx_kp_s_src_lib_shuffle_pyx, __pyx_k_src_lib_shuffle_pyx, sizeof(__pyx_k_src_lib_shuffle_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_temp_file, __pyx_k_temp_file, sizeof(__pyx_k_temp_file), 0, 0, 1, 1},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
@@ -1267,13 +1281,13 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "src/lib/shuffle.pyx":6
  * cimport _shuffle
  * 
- * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb):             # <<<<<<<<<<<<<<
- *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+ * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb, char* log_file):             # <<<<<<<<<<<<<<
+ *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb, log_file)
  */
-  __pyx_tuple_ = PyTuple_Pack(5, __pyx_n_s_cooccurrence_file, __pyx_n_s_output_file, __pyx_n_s_temp_file, __pyx_n_s_verbosity, __pyx_n_s_memory_limit_gb); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(6, __pyx_n_s_cooccurrence_file, __pyx_n_s_output_file, __pyx_n_s_temp_file, __pyx_n_s_verbosity, __pyx_n_s_memory_limit_gb, __pyx_n_s_log_file); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
-  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(5, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_shuffle_pyx, __pyx_n_s_shuffle, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_codeobj__2 = (PyObject*)__Pyx_PyCode_New(6, 0, 6, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple_, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_lib_shuffle_pyx, __pyx_n_s_shuffle, 6, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__2)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -1522,14 +1536,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_src__crucyble__lib__shuffle) {
+  if (__pyx_module_is_main_crucyble__lib__shuffle) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "src.crucyble.lib.shuffle")) {
-      if (unlikely(PyDict_SetItemString(modules, "src.crucyble.lib.shuffle", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "crucyble.lib.shuffle")) {
+      if (unlikely(PyDict_SetItemString(modules, "crucyble.lib.shuffle", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -1553,10 +1567,10 @@ if (!__Pyx_RefNanny) {
   /* "src/lib/shuffle.pyx":6
  * cimport _shuffle
  * 
- * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb):             # <<<<<<<<<<<<<<
- *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb)
+ * def shuffle(char* cooccurrence_file, char* output_file, char* temp_file, int verbosity, float memory_limit_gb, char* log_file):             # <<<<<<<<<<<<<<
+ *     return _shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, memory_limit_gb, log_file)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_8crucyble_3lib_7shuffle_1shuffle, NULL, __pyx_n_s_src_crucyble_lib_shuffle); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8crucyble_3lib_7shuffle_1shuffle, NULL, __pyx_n_s_crucyble_lib_shuffle); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_shuffle, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1578,11 +1592,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init src.crucyble.lib.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init crucyble.lib.shuffle", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init src.crucyble.lib.shuffle");
+    PyErr_SetString(PyExc_ImportError, "init crucyble.lib.shuffle");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

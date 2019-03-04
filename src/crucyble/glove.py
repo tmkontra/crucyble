@@ -16,8 +16,7 @@ class GloVe(metaclass=LoggingMeta):
     This class also serves as the singleton for verbosity, logging and other configuration defaults, via class attributes.
     """
 
-    # TODO: add logging to other library sources!
-    _default_verbosity = Verbosity(1)
+
     _default_output_path = Path.home() / ".cache" / "crucyble"
 
     @classmethod
