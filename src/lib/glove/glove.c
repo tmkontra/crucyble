@@ -52,6 +52,7 @@ real alpha = 0.75, x_max = 10.0; // Weighting function parameters, not extremely
 real *W, *gradsq, *cost;
 long long num_lines, *lines_per_thread, vocab_size;
 char *vocab_file, *input_file, *save_W_file, *save_gradsq_file;
+FILE *logfile;
 
 /* Efficient string comparison */
 int scmp( char *s1, char *s2 ) {
@@ -66,12 +67,12 @@ void initialize_parameters() {
 	/* Allocate space for word vectors and context word vectors, and correspodning gradsq */
 	a = posix_memalign((void **)&W, 128, 2 * vocab_size * vector_size * sizeof(real)); // Might perform better than malloc
     if (W == NULL) {
-        fprintf(stderr, "Error allocating memory for W\n");
+        fprintf(logfile, "Error allocating memory for W\n");
         exit(1);
     }
     a = posix_memalign((void **)&gradsq, 128, 2 * vocab_size * vector_size * sizeof(real)); // Might perform better than malloc
 	if (gradsq == NULL) {
-        fprintf(stderr, "Error allocating memory for gradsq\n");
+        fprintf(logfile, "Error allocating memory for gradsq\n");
         exit(1);
     }
 	for (b = 0; b < vector_size; b++) for (a = 0; a < 2 * vocab_size; a++) W[a * vector_size + b] = (rand() / (real)RAND_MAX - 0.5) / vector_size;
@@ -141,13 +142,13 @@ int save_params() {
     if(use_binary > 0) { // Save parameters in binary file
         sprintf(output_file,"%s.bin",save_W_file);
         fout = fopen(output_file,"wb");
-        if(fout == NULL) {fprintf(stderr, "Unable to open file %s.\n",save_W_file); return 1;}
+        if(fout == NULL) {fprintf(logfile, "ERROR: Unable to open file %s.\n",save_W_file); return 1;}
         for(a = 0; a < 2 * (long long)vocab_size * (vector_size + 1); a++) fwrite(&W[a], sizeof(real), 1,fout);
         fclose(fout);
         if(save_gradsq > 0) {
             sprintf(output_file_gsq,"%s.bin",save_gradsq_file);
             fgs = fopen(output_file_gsq,"wb");
-            if(fgs == NULL) {fprintf(stderr, "Unable to open file %s.\n",save_gradsq_file); return 1;}
+            if(fgs == NULL) {fprintf(logfile, "ERROR: Unable to open file %s.\n",save_gradsq_file); return 1;}
             for(a = 0; a < 2 * (long long)vocab_size * (vector_size + 1); a++) fwrite(&gradsq[a], sizeof(real), 1,fgs);
             fclose(fgs);
         }
@@ -157,13 +158,13 @@ int save_params() {
         if(save_gradsq > 0) {
             sprintf(output_file_gsq,"%s.txt",save_gradsq_file);
             fgs = fopen(output_file_gsq,"wb");
-            if(fgs == NULL) {fprintf(stderr, "Unable to open file %s.\n",save_gradsq_file); return 1;}
+            if(fgs == NULL) {fprintf(logfile, "ERROR: Unable to open file %s.\n",save_gradsq_file); return 1;}
         }
         fout = fopen(output_file,"wb");
-        if(fout == NULL) {fprintf(stderr, "Unable to open file %s.\n",save_W_file); return 1;}
+        if(fout == NULL) {fprintf(logfile, "ERROR: Unable to open file %s.\n",save_W_file); return 1;}
         fid = fopen(vocab_file, "r");
         sprintf(format,"%%%ds",MAX_STRING_LENGTH);
-        if(fid == NULL) {fprintf(stderr, "Unable to open file %s.\n",vocab_file); return 1;}
+        if(fid == NULL) {fprintf(logfile, "ERROR: Unable to open file %s.\n",vocab_file); return 1;}
         for(a = 0; a < vocab_size; a++) {
             if(fscanf(fid,format,word) == 0) return 1;
             // input vocab cannot contain special <unk> keyword
@@ -219,6 +220,7 @@ int save_params() {
         fclose(fid);
         fclose(fout);
         if(save_gradsq > 0) fclose(fgs);
+        fclose(logfile);
     }
     return 0;
 }
@@ -229,22 +231,22 @@ int train_glove() {
     int b;
     FILE *fin;
     real total_cost = 0;
-    fprintf(stderr, "TRAINING MODEL\n");
+    fprintf(logfile, "TRAINING MODEL\n");
     
     fin = fopen(input_file, "rb");
-    if(fin == NULL) {fprintf(stderr,"Unable to open cooccurrence file %s.\n",input_file); return 1;}
+    if(fin == NULL) {fprintf(logfile,"ERROR: Unable to open cooccurrence file %s.\n",input_file); return 1;}
     fseeko(fin, 0, SEEK_END);
     file_size = ftello(fin);
     num_lines = file_size/(sizeof(CREC)); // Assuming the file isn't corrupt and consists only of CREC's
     fclose(fin);
-    fprintf(stderr,"Read %lld lines.\n", num_lines);
-    if(verbose > 1) fprintf(stderr,"Initializing parameters...");
+    fprintf(logfile, "Read %lld lines.\n", num_lines);
+    if(verbose > 1) fprintf(logfile, "Initializing parameters...");
     initialize_parameters();
-    if(verbose > 1) fprintf(stderr,"done.\n");
-    if(verbose > 0) fprintf(stderr,"vector size: %d\n", vector_size);
-    if(verbose > 0) fprintf(stderr,"vocab size: %lld\n", vocab_size);
-    if(verbose > 0) fprintf(stderr,"x_max: %lf\n", x_max);
-    if(verbose > 0) fprintf(stderr,"alpha: %lf\n", alpha);
+    if(verbose > 1) fprintf(logfile, "done.\n");
+    if(verbose > 0) fprintf(logfile, "vector size: %d\n", vector_size);
+    if(verbose > 0) fprintf(logfile, "vocab size: %lld\n", vocab_size);
+    if(verbose > 0) fprintf(logfile, "x_max: %lf\n", x_max);
+    if(verbose > 0) fprintf(logfile, "alpha: %lf\n", alpha);
     pthread_t *pt = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
     lines_per_thread = (long long *) malloc(num_threads * sizeof(long long));
     
@@ -256,18 +258,20 @@ int train_glove() {
         for (a = 0; a < num_threads; a++) pthread_create(&pt[a], NULL, glove_thread, (void *)a);
         for (a = 0; a < num_threads; a++) pthread_join(pt[a], NULL);
         for (a = 0; a < num_threads; a++) total_cost += cost[a];
-        fprintf(stderr,"iter: %03d, cost: %lf\n", b+1, total_cost/num_lines);
+        fprintf(logfile,"iter: %03d, cost: %lf\n", b+1, total_cost/num_lines);
     }
     return save_params();
 }
 
-int train(char* input_file_, char* vocab_file_, char* output_vector_files, int do_save_gradsq_files, char* opt_output_gradsq_files, int verbosity) {
+int train(char* input_file_, char* vocab_file_, char* output_vector_files, int do_save_gradsq_files, char* opt_output_gradsq_files, int verbosity, char *log_file) {
     int i;
     FILE *fid;
     vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     input_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     save_W_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
     save_gradsq_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
+
+    logfile = fopen(log_file, "w");
 
     verbose = verbosity;
     input_file = input_file_;
@@ -288,7 +292,7 @@ int train(char* input_file_, char* vocab_file_, char* output_vector_files, int d
     cost = malloc(sizeof(real) * num_threads);
     vocab_size = 0;
     fid = fopen(vocab_file, "r");
-    if(fid == NULL) {fprintf(stderr, "Unable to open vocab file %s.\n",vocab_file); return 1;}
+    if(fid == NULL) {fprintf(logfile, "ERROR: Unable to open vocab file %s.\n",vocab_file); return 1;}
     while ((i = getc(fid)) != EOF) if (i == '\n') vocab_size++; // Count number of entries in vocab_file
     fclose(fid);
     return train_glove();

@@ -99,7 +99,7 @@ class Shuffle(Stage):
         cls.log()
         return ret
 
-class Train:
+class Train(Stage):
     log = partial(log, "Train")
     
     class Output(Enum):
@@ -119,11 +119,13 @@ class Train:
         vector_files_prefix = vector_files_prefix or "vectors"
         gradsq_files_prefix = gradsq_files_prefix or "gradsq"
         verbosity = verbosity or 1
-        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix, verbosity)
+        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix, verbosity, cls.glove.log_location_char)
 
     @classmethod
-    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity, **kwargs):    
-        lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity)
+    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity, log_file):    
+        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity, log_file)
+        cls.log()
+        return ret
 
 MaxVocab = EnumUnion(VocabCount.MaxVocab)
 Symmetry = EnumUnion(Cooccur.Symmetry)

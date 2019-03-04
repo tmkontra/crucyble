@@ -42,7 +42,7 @@ class LoggingMeta(type):
 def process_log_line(line, logger):
     if "error" in line.lower():
         logger.error(line)
-    elif "warn" in line.lower();
+    elif "warn" in line.lower():
         logger.warn(line)
     else:
         logger.debug(line)
