@@ -4,11 +4,11 @@ import logging
 from functools import partial
 from pathlib import Path
 from tempfile import NamedTemporaryFile
+from typing import Union
 
 from crucyble import lib
 from crucyble.decorators import with_paths, path_to_bytes
 from crucyble.logging import logging_callback
-from crucyble.types import EnumUnion
 from crucyble.verbosity import Verbosity, with_verbosity
 
 class Stage(ABC):
@@ -99,7 +99,7 @@ class Shuffle(Stage):
         if not verbosity:
             verbosity = 1
         if not requested_memory_limit_gb:
-            requested_memory_limit_gb = 8.0
+            requested_memory_limit_gb = 4.0
         cls.__shuffle(cooccur_input, output_file, temp_file, verbosity, requested_memory_limit_gb)
     
     @classmethod
@@ -124,25 +124,29 @@ class Train(Stage):
         WORD_AND_CONTEXT_NO_BIAS = 2
 
     @classmethod
-    def run(cls, cooccurrence_input_file, vocab_file, vector_files_prefix=None, gradsq_files_prefix=None, verbosity=None):
+    @with_verbosity
+    def run(cls, cooccurrence_input_file, vocab_file, vector_files_prefix=None, gradsq_files_prefix=None,
+            verbosity=None, num_iteration=None, model=None, use_binary=None, checkpoint_every=None,
+            eta=None, alpha=None, x_max=None):
         vector_files_prefix = vector_files_prefix or b"vectors"
         gradsq_files_prefix = gradsq_files_prefix or b"gradsq"
-        verbosity = verbosity or 2
+        verbosity = verbosity or Verbosity.MEDIUM
         logging.info("saving vectors to: %s", vector_files_prefix)
         logging.info("saving gradsq to %s", gradsq_files_prefix)
-        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix, verbosity)
+        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix,
+                    verbosity.value, num_iteration, model.value, use_binary.value, checkpoint_every, eta, alpha, x_max)
 
     @classmethod
-    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity):  
-        # ...verbosity...
-        # int num_iteration, int model, int use_binary, int checkpoint_every, 
-        #   double eta, double alpha, double x_max, 
-        # ....logfile
-        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity, 3, 2, 0, 0, 0.05, 0.75, 10, cls.glove.log_location_char)
+    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, 
+                verbosity, num_iteration, model, use_binary, checkpoint_every,
+                eta, alpha, x_max):  
+        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity,
+                              num_iteration, model, use_binary, checkpoint_every, eta, alpha, x_max,
+                              cls.glove.log_location_char)
         cls.log()
         return ret
 
-MaxVocab = EnumUnion(VocabCount.MaxVocab)
-Symmetry = EnumUnion(Cooccur.Symmetry)
-Output = EnumUnion(Train.Output)
-Model = EnumUnion(Train.Model)
+MaxVocab = Union[VocabCount.MaxVocab, int]
+Symmetry = Union[Cooccur.Symmetry, int]
+Output = Union[Train.Output, int]
+Model = Union[Train.Model, int]

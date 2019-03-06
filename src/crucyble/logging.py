@@ -8,9 +8,6 @@ class LoggingMeta(type):
     _is_logging = True
     _log_location = Path.home() / ".cache" / "{}.log".format(datetime.now().isoformat())
 
-    # TODO: add logging to other library sources!
-    _default_verbosity = Verbosity(1)
-
     def no_log(self):
         self._is_logging = False
 
