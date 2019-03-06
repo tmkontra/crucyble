@@ -53,7 +53,7 @@ class TestGlove:
         gradsq_prefix = test_output_dir / 'gradsq'
 
     def test_vocab_count(self):
-        maxvocab = 100e3
+        maxvocab = 25e3
         min_count = 5
         GloVe.vocab_count(self.Paths.corpus, maxvocab, min_count, output_path=self.Paths.vocab)
         assert(self.Paths.vocab.exists())
