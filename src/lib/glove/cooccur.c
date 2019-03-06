@@ -401,7 +401,6 @@ int get_cooccurrence(char* corpus_file, char* output_file) {
     if(verbose > 1) fprintf(logfile,"%d files in total.\n",fidcounter + 1);
     fclose(fid);
     fclose(foverflow);
-    fclose(logfile);
     free(cr);
     free(lookup);
     free(bigram_table);
@@ -409,32 +408,52 @@ int get_cooccurrence(char* corpus_file, char* output_file) {
     return merge_files(fidcounter + 1, output_file); // Merge the sorted temporary files
 }
 
-int cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity, 
-            int symmetry, int context_window_size, char* overflow_file, float memory_limit_gb,
-            char* log_file) {
-    int i;
-    real rlimit, n = 1e5;
-    vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
-    file_head = malloc(sizeof(char) * MAX_STRING_LENGTH);
-    /* map input args to globals */
-    verbose = verbosity;
-    symmetric = symmetry;
-    window_size = context_window_size;
-    vocab_file = vocab_file_;
-    file_head = overflow_file;
-    memory_limit = memory_limit_gb;
+int validate_memory_limit(float requested_memory_limit) {
+    int new_memory_limit;
+    new_memory_limit = requested_memory_limit;
+    while(1) {
+        set_memory_vars(new_memory_limit);
+        CREC *cr = malloc(sizeof(CREC) * (overflow_length + 1));
+        if (cr) {
+            free(cr);
+            if (new_memory_limit != requested_memory_limit) fprintf(logfile, "adjusted memory_limit: %d.\n", new_memory_limit);
+            return 0;
+        }
+        new_memory_limit = new_memory_limit * 0.95;
+    }
+}
 
+int set_memory_vars(int new_memory_limit) {
+    memory_limit = new_memory_limit;
+    real rlimit, n = 1e5;
     /* The memory_limit determines a limit on the number of elements in bigram_table and the overflow buffer */
     /* Estimate the maximum value that max_product can take so that this limit is still satisfied */
     rlimit = 0.85 * (real)memory_limit * 1073741824/(sizeof(CREC));
     while(fabs(rlimit - n * (log(n) + 0.1544313298)) > 1e-3) n = rlimit / (log(n) + 0.1544313298);
     max_product = (long long) n;
     overflow_length = (long long) rlimit/6; // 0.85 + 1/6 ~= 1
+    return 0;
+}
 
+int cooccur(char* corpus_file, char* vocab_file_, char* output_file, int verbosity, 
+            int symmetry, int context_window_size, char* overflow_file, float memory_limit_gb,
+            char* log_file) {
+    int i, result;
+    vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
+    file_head = malloc(sizeof(char) * MAX_STRING_LENGTH);
+    logfile = fopen(log_file, "w");
+    /* map input args to globals */
+    verbose = verbosity;
+    symmetric = symmetry;
+    window_size = context_window_size;
+    vocab_file = vocab_file_;
+    file_head = overflow_file;
+    validate_memory_limit(memory_limit_gb);
     //TODO: add back in the overrides:
     //    /* Override estimates by specifying limits explicitly on the command line */
     //    if ((i = find_arg((char *)"-max-product", argc, argv)) > 0) max_product = atoll(argv[i + 1]);
     //    if ((i = find_arg((char *)"-overflow-length", argc, argv)) > 0) overflow_length = atoll(argv[i + 1]);
-    logfile = fopen(log_file, "w");
-    return get_cooccurrence(corpus_file, output_file);
+    result = get_cooccurrence(corpus_file, output_file);
+    fclose(logfile);
+    return result;
 }
