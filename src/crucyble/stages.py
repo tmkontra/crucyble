@@ -2,13 +2,17 @@ from abc import ABC, abstractmethod
 from enum import Enum
 import logging
 from functools import partial
+from pathlib import Path
+from tempfile import NamedTemporaryFile
+from typing import Union
 
 from crucyble import lib
+from crucyble.decorators import with_paths, path_to_bytes
 from crucyble.logging import logging_callback
-from crucyble.types import EnumUnion
 from crucyble.verbosity import Verbosity, with_verbosity
 
 class Stage(ABC):
+    glove = None # set in __init__.py (i.e. at import time)
     logging_callback = logging_callback
     """A single unit of work for the GloVe pipeline.
     These class provide methods that transform arguments to the corresponding C types.
@@ -22,18 +26,20 @@ class Stage(ABC):
     def run(self):
         """The entry point for a stage"""
 
-def log(name):
+def log(class_name):
+    name = __name__ + "." + class_name
     if Stage.glove.is_logging:
         Stage.logging_callback(logging.getLogger(name), Stage.glove.log_location)
 
 class VocabCount(Stage):
-    log = partial(log, __name__+".VocabCount")
+    log = partial(log, "VocabCount")
 
     @classmethod
     @with_verbosity
+    @with_paths(ignore="vocab") # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
     def run(cls, corpus, vocab, max_vocab, min_word_count, verbose=None):
         if verbose is None:
-            verbose = GloVe._default_verbosity
+            verbose = cls.glove._default_verbosity
         return cls.__vocab_count(corpus, vocab, max_vocab, min_word_count, verbose)
 
     class MaxVocab(int):
@@ -46,39 +52,65 @@ class VocabCount(Stage):
         def no_limit(cls):
             return cls(0)
 
-    @staticmethod
-    def __vocab_count(corpus, vocab, max_vocab, min_word_count, verbose):
+    @classmethod
+    def __vocab_count(cls, corpus, vocab, max_vocab, min_word_count, verbose):
         if isinstance(max_vocab, (int, float)):
-            max_vocab = VocabCount.MaxVocab(int(max_vocab))
-        ret = lib.vocab_count.vocab_count(corpus, vocab, verbose.value, max_vocab, min_word_count, Stage.glove.log_location_char)
-        VocabCount.log()
+            max_vocab = cls.MaxVocab(int(max_vocab))
+        ret = lib.vocab_count.vocab_count(corpus, vocab, 2, max_vocab, min_word_count, cls.glove.log_location_char)
+        cls.log()
         return ret 
 
 
 class Cooccur(Stage):
-    log = partial(log, __name__+".Cooccur")
+    log = partial(log, "Cooccur")
 
     @classmethod
     @with_verbosity
-    def run(cls, corpus, vocab, coocur_output, symmetry, window_size_decl, memory_limit_gb, verbose=None, overflow_file=None):
+    @with_paths(ignore=["cooccur_output","overflow_file"])
+    def run(cls, corpus, vocab, cooccur_output, symmetry, window_size_decl, memory_limit_gb, verbose=None, overflow_file=None):
         if verbose is None:
             verbose = GloVe._default_verbosity
-        return cls.__cooccur(corpus, vocab, coocur_output, symmetry, window_size_decl, memory_limit_gb, verbose, overflow_file)
+        if overflow_file is None:
+            overflow_file = NamedTemporaryFile().name.encode('utf-8')
+        if isinstance(symmetry, int):
+            symmetry = cls.Symmetry(symmetry)
+        symmetry = symmetry.value
+
+        return cls.__cooccur(corpus, vocab, cooccur_output, symmetry, window_size_decl, memory_limit_gb, verbose, overflow_file)
 
     class Symmetry(Enum):
         Asymmetric = 0
         Symmetric = 1
 
-    @staticmethod
-    def __cooccur(corpus, vocab, coocur_bin, symmetry: Symmetry, window_size_decl: int, memory_limit_gb: float, verbose, overflow_file):
-        if isinstance(symmetry, int):
-            symmetry = Cooccur.Symmetry(symmetry)
-        symmetry = symmetry.value
-        ret = lib.cooccur.cooccur(corpus, vocab, coocur_bin, verbose.value, symmetry, window_size_decl, overflow_file, memory_limit_gb, Stage.glove.log_location_char)
-        Cooccur.log()
+    @classmethod
+    def __cooccur(cls, corpus, vocab, coocur_bin, symmetry: Symmetry, window_size_decl: int, memory_limit_gb: float, verbose, overflow_file):
+        ret = lib.cooccur.cooccur(corpus, vocab, coocur_bin, verbose.value, symmetry, window_size_decl, overflow_file, memory_limit_gb, cls.glove.log_location_char)
+        cls.log()
+
         return ret
 
-class Train:
+class Shuffle(Stage):
+    log = partial(log, "Shuffle")
+
+    @classmethod
+    def run(cls, cooccur_input, output_file, temp_file=None, verbosity=None, requested_memory_limit_gb=None):
+        if not temp_file:
+            temp_file = NamedTemporaryFile().name.encode('utf-8')
+        if not verbosity:
+            verbosity = 1
+        if not requested_memory_limit_gb:
+            requested_memory_limit_gb = 4.0
+        cls.__shuffle(cooccur_input, output_file, temp_file, verbosity, requested_memory_limit_gb)
+    
+    @classmethod
+    def __shuffle(cls, cooccurrence_file, output_file, temp_file, verbosity, requested_memory_limit_gb):
+        ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, requested_memory_limit_gb, cls.glove.log_location_char)
+        cls.log()
+        return ret
+
+class Train(Stage):
+    log = partial(log, "Train")
+    
     class Output(Enum):
         TEXT = 0
         BINARY = 1
@@ -91,7 +123,30 @@ class Train:
         WORD_NO_BIAS = 1
         WORD_AND_CONTEXT_NO_BIAS = 2
 
-MaxVocab = EnumUnion(VocabCount.MaxVocab)
-Symmetry = EnumUnion(Cooccur.Symmetry)
-Output = EnumUnion(Train.Output)
-Model = EnumUnion(Train.Model)
+    @classmethod
+    @with_verbosity
+    def run(cls, cooccurrence_input_file, vocab_file, vector_files_prefix=None, gradsq_files_prefix=None,
+            verbosity=None, num_iteration=None, model=None, use_binary=None, checkpoint_every=None,
+            eta=None, alpha=None, x_max=None):
+        vector_files_prefix = vector_files_prefix or b"vectors"
+        gradsq_files_prefix = gradsq_files_prefix or b"gradsq"
+        verbosity = verbosity or Verbosity.MEDIUM
+        logging.info("saving vectors to: %s", vector_files_prefix)
+        logging.info("saving gradsq to %s", gradsq_files_prefix)
+        cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix,
+                    verbosity.value, num_iteration, model.value, use_binary.value, checkpoint_every, eta, alpha, x_max)
+
+    @classmethod
+    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, 
+                verbosity, num_iteration, model, use_binary, checkpoint_every,
+                eta, alpha, x_max):  
+        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity,
+                              num_iteration, model, use_binary, checkpoint_every, eta, alpha, x_max,
+                              cls.glove.log_location_char)
+        cls.log()
+        return ret
+
+MaxVocab = Union[VocabCount.MaxVocab, int]
+Symmetry = Union[Cooccur.Symmetry, int]
+Output = Union[Train.Output, int]
+Model = Union[Train.Model, int]

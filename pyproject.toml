@@ -15,11 +15,15 @@ readme = "README.md"
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
-Cython = "^0.29.5"
-toml = "^0.10.0"
 wheel = "^0.33.1"
 setuptools = "^40.8"
+Cython = "^0.29.5"
+toml = "^0.10.0"
+pytest = "^4.3"
+black = {version = "^18.3-alpha.0",allows-prereleases = true}
+mypy = "^0.670.0"
+
 
 [build-system]
-requires = ["poetry>=0.12", "setuptools"]
+requires = ["poetry>=0.12", "setuptools", "cython"]
 build-backend = "poetry.masonry.api"

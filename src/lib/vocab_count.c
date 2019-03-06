@@ -6,13 +6,13 @@
         "include_dirs": [
             "src/lib/glove"
         ],
-        "name": "src.crucyble.lib.vocab_count",
+        "name": "crucyble.lib.vocab_count",
         "sources": [
             "src/lib/vocab_count.pyx",
             "src/lib/glove/vocab_count.c"
         ]
     },
-    "module_name": "src.crucyble.lib.vocab_count"
+    "module_name": "crucyble.lib.vocab_count"
 }
 END: Cython Metadata */
 
@@ -601,8 +601,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__src__crucyble__lib__vocab_count
-#define __PYX_HAVE_API__src__crucyble__lib__vocab_count
+#define __PYX_HAVE__crucyble__lib__vocab_count
+#define __PYX_HAVE_API__crucyble__lib__vocab_count
 /* Early includes */
 #include "glove/vocab_count.h"
 #ifdef _OPENMP
@@ -1026,12 +1026,12 @@ static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 /* Module declarations from '_vocab_count' */
 
-/* Module declarations from 'src.crucyble.lib.vocab_count' */
-#define __Pyx_MODULE_NAME "src.crucyble.lib.vocab_count"
-extern int __pyx_module_is_main_src__crucyble__lib__vocab_count;
-int __pyx_module_is_main_src__crucyble__lib__vocab_count = 0;
+/* Module declarations from 'crucyble.lib.vocab_count' */
+#define __Pyx_MODULE_NAME "crucyble.lib.vocab_count"
+extern int __pyx_module_is_main_crucyble__lib__vocab_count;
+int __pyx_module_is_main_crucyble__lib__vocab_count = 0;
 
-/* Implementation of 'src.crucyble.lib.vocab_count' */
+/* Implementation of 'crucyble.lib.vocab_count' */
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_test[] = "__test__";
@@ -1044,21 +1044,21 @@ static const char __pyx_k_output_file[] = "output_file";
 static const char __pyx_k_vocab_count[] = "vocab_count";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_src_lib_vocab_count_pyx[] = "src/lib/vocab_count.pyx";
-static const char __pyx_k_src_crucyble_lib_vocab_count[] = "src.crucyble.lib.vocab_count";
+static const char __pyx_k_crucyble_lib_vocab_count[] = "crucyble.lib.vocab_count";
 static PyObject *__pyx_n_s_cline_in_traceback;
 static PyObject *__pyx_n_s_corpus_file;
+static PyObject *__pyx_n_s_crucyble_lib_vocab_count;
 static PyObject *__pyx_n_s_log_file;
 static PyObject *__pyx_n_s_main;
 static PyObject *__pyx_n_s_max_vocab;
 static PyObject *__pyx_n_s_min_count;
 static PyObject *__pyx_n_s_name;
 static PyObject *__pyx_n_s_output_file;
-static PyObject *__pyx_n_s_src_crucyble_lib_vocab_count;
 static PyObject *__pyx_kp_s_src_lib_vocab_count_pyx;
 static PyObject *__pyx_n_s_test;
 static PyObject *__pyx_n_s_verbose;
 static PyObject *__pyx_n_s_vocab_count;
-static PyObject *__pyx_pf_3src_8crucyble_3lib_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count, char *__pyx_v_log_file); /* proto */
+static PyObject *__pyx_pf_8crucyble_3lib_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count, char *__pyx_v_log_file); /* proto */
 static PyObject *__pyx_tuple_;
 static PyObject *__pyx_codeobj__2;
 /* Late includes */
@@ -1071,9 +1071,9 @@ static PyObject *__pyx_codeobj__2;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_3src_8crucyble_3lib_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_3src_8crucyble_3lib_11vocab_count_1vocab_count = {"vocab_count", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3src_8crucyble_3lib_11vocab_count_1vocab_count, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_3src_8crucyble_3lib_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8crucyble_3lib_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8crucyble_3lib_11vocab_count_1vocab_count = {"vocab_count", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8crucyble_3lib_11vocab_count_1vocab_count, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8crucyble_3lib_11vocab_count_1vocab_count(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   char *__pyx_v_corpus_file;
   char *__pyx_v_output_file;
   int __pyx_v_verbose;
@@ -1165,18 +1165,18 @@ static PyObject *__pyx_pw_3src_8crucyble_3lib_11vocab_count_1vocab_count(PyObjec
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("vocab_count", 1, 6, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 6, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("src.crucyble.lib.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.lib.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_3src_8crucyble_3lib_11vocab_count_vocab_count(__pyx_self, __pyx_v_corpus_file, __pyx_v_output_file, __pyx_v_verbose, __pyx_v_max_vocab, __pyx_v_min_count, __pyx_v_log_file);
+  __pyx_r = __pyx_pf_8crucyble_3lib_11vocab_count_vocab_count(__pyx_self, __pyx_v_corpus_file, __pyx_v_output_file, __pyx_v_verbose, __pyx_v_max_vocab, __pyx_v_min_count, __pyx_v_log_file);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_3src_8crucyble_3lib_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count, char *__pyx_v_log_file) {
+static PyObject *__pyx_pf_8crucyble_3lib_11vocab_count_vocab_count(CYTHON_UNUSED PyObject *__pyx_self, char *__pyx_v_corpus_file, char *__pyx_v_output_file, int __pyx_v_verbose, PY_LONG_LONG __pyx_v_max_vocab, PY_LONG_LONG __pyx_v_min_count, char *__pyx_v_log_file) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -1204,7 +1204,7 @@ static PyObject *__pyx_pf_3src_8crucyble_3lib_11vocab_count_vocab_count(CYTHON_U
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("src.crucyble.lib.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("crucyble.lib.vocab_count.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -1260,13 +1260,13 @@ static struct PyModuleDef __pyx_moduledef = {
 static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
   {&__pyx_n_s_corpus_file, __pyx_k_corpus_file, sizeof(__pyx_k_corpus_file), 0, 0, 1, 1},
+  {&__pyx_n_s_crucyble_lib_vocab_count, __pyx_k_crucyble_lib_vocab_count, sizeof(__pyx_k_crucyble_lib_vocab_count), 0, 0, 1, 1},
   {&__pyx_n_s_log_file, __pyx_k_log_file, sizeof(__pyx_k_log_file), 0, 0, 1, 1},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
   {&__pyx_n_s_max_vocab, __pyx_k_max_vocab, sizeof(__pyx_k_max_vocab), 0, 0, 1, 1},
   {&__pyx_n_s_min_count, __pyx_k_min_count, sizeof(__pyx_k_min_count), 0, 0, 1, 1},
   {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
   {&__pyx_n_s_output_file, __pyx_k_output_file, sizeof(__pyx_k_output_file), 0, 0, 1, 1},
-  {&__pyx_n_s_src_crucyble_lib_vocab_count, __pyx_k_src_crucyble_lib_vocab_count, sizeof(__pyx_k_src_crucyble_lib_vocab_count), 0, 0, 1, 1},
   {&__pyx_kp_s_src_lib_vocab_count_pyx, __pyx_k_src_lib_vocab_count_pyx, sizeof(__pyx_k_src_lib_vocab_count_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
   {&__pyx_n_s_verbose, __pyx_k_verbose, sizeof(__pyx_k_verbose), 0, 0, 1, 1},
@@ -1539,14 +1539,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_src__crucyble__lib__vocab_count) {
+  if (__pyx_module_is_main_crucyble__lib__vocab_count) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "src.crucyble.lib.vocab_count")) {
-      if (unlikely(PyDict_SetItemString(modules, "src.crucyble.lib.vocab_count", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "crucyble.lib.vocab_count")) {
+      if (unlikely(PyDict_SetItemString(modules, "crucyble.lib.vocab_count", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -1573,7 +1573,7 @@ if (!__Pyx_RefNanny) {
  * def vocab_count(char* corpus_file, char* output_file, int verbose, long long max_vocab, long long min_count, char* log_file):             # <<<<<<<<<<<<<<
  *     return _vocab_count.vocab_count(corpus_file, output_file, verbose, max_vocab, min_count, log_file)
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3src_8crucyble_3lib_11vocab_count_1vocab_count, NULL, __pyx_n_s_src_crucyble_lib_vocab_count); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8crucyble_3lib_11vocab_count_1vocab_count, NULL, __pyx_n_s_crucyble_lib_vocab_count); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_vocab_count, __pyx_t_1) < 0) __PYX_ERR(0, 6, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -1595,11 +1595,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init src.crucyble.lib.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init crucyble.lib.vocab_count", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init src.crucyble.lib.vocab_count");
+    PyErr_SetString(PyExc_ImportError, "init crucyble.lib.vocab_count");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

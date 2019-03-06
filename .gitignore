@@ -106,6 +106,10 @@ venv.bak/
 # local resources
 test/resource
 test/output
+test/pytest
+
+# IDE
+.vscode
 
 # build artifacts
 README.rst
