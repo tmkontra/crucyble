@@ -2,8 +2,11 @@ from abc import ABC, abstractmethod
 from enum import Enum
 import logging
 from functools import partial
+from pathlib import Path
+from tempfile import NamedTemporaryFile
 
 from crucyble import lib
+from crucyble.decorators import with_paths, path_to_bytes
 from crucyble.logging import logging_callback
 from crucyble.types import EnumUnion
 from crucyble.verbosity import Verbosity, with_verbosity
@@ -33,6 +36,7 @@ class VocabCount(Stage):
 
     @classmethod
     @with_verbosity
+    @with_paths(ignore="vocab") # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
     def run(cls, corpus, vocab, max_vocab, min_word_count, verbose=None):
         if verbose is None:
             verbose = cls.glove._default_verbosity
@@ -52,7 +56,7 @@ class VocabCount(Stage):
     def __vocab_count(cls, corpus, vocab, max_vocab, min_word_count, verbose):
         if isinstance(max_vocab, (int, float)):
             max_vocab = cls.MaxVocab(int(max_vocab))
-        ret = lib.vocab_count.vocab_count(corpus, vocab, verbose.value, max_vocab, min_word_count, cls.glove.log_location_char)
+        ret = lib.vocab_count.vocab_count(corpus, vocab, 2, max_vocab, min_word_count, cls.glove.log_location_char)
         cls.log()
         return ret 
 
@@ -62,10 +66,17 @@ class Cooccur(Stage):
 
     @classmethod
     @with_verbosity
-    def run(cls, corpus, vocab, coocur_output, symmetry, window_size_decl, memory_limit_gb, verbose=None, overflow_file=None):
+    @with_paths(ignore=["cooccur_output","overflow_file"])
+    def run(cls, corpus, vocab, cooccur_output, symmetry, window_size_decl, memory_limit_gb, verbose=None, overflow_file=None):
         if verbose is None:
             verbose = GloVe._default_verbosity
-        return cls.__cooccur(corpus, vocab, coocur_output, symmetry, window_size_decl, memory_limit_gb, verbose, overflow_file)
+        if overflow_file is None:
+            overflow_file = NamedTemporaryFile().name.encode('utf-8')
+        if isinstance(symmetry, int):
+            symmetry = cls.Symmetry(symmetry)
+        symmetry = symmetry.value
+
+        return cls.__cooccur(corpus, vocab, cooccur_output, symmetry, window_size_decl, memory_limit_gb, verbose, overflow_file)
 
     class Symmetry(Enum):
         Asymmetric = 0
@@ -73,28 +84,26 @@ class Cooccur(Stage):
 
     @classmethod
     def __cooccur(cls, corpus, vocab, coocur_bin, symmetry: Symmetry, window_size_decl: int, memory_limit_gb: float, verbose, overflow_file):
-        if isinstance(symmetry, int):
-            symmetry = cls.Symmetry(symmetry)
-        symmetry = symmetry.value
         ret = lib.cooccur.cooccur(corpus, vocab, coocur_bin, verbose.value, symmetry, window_size_decl, overflow_file, memory_limit_gb, cls.glove.log_location_char)
         cls.log()
+
         return ret
 
 class Shuffle(Stage):
     log = partial(log, "Shuffle")
 
     @classmethod
-    def run(cls, cooccur_input, output_file):
-        cls.__shuffle(cooccur_input, output_file)
-    
-    @classmethod
-    def __shuffle(cls, cooccurrence_file, output_file, temp_file=None, verbosity=None, requested_memory_limit_gb=None):
+    def run(cls, cooccur_input, output_file, temp_file=None, verbosity=None, requested_memory_limit_gb=None):
         if not temp_file:
-            temp_file = str(cls.glove.output_path("shuf.tmp.bin")).encode('utf-8')
+            temp_file = NamedTemporaryFile().name.encode('utf-8')
         if not verbosity:
             verbosity = 1
         if not requested_memory_limit_gb:
             requested_memory_limit_gb = 8.0
+        cls.__shuffle(cooccur_input, output_file, temp_file, verbosity, requested_memory_limit_gb)
+    
+    @classmethod
+    def __shuffle(cls, cooccurrence_file, output_file, temp_file, verbosity, requested_memory_limit_gb):
         ret = lib.shuffle.shuffle(cooccurrence_file, output_file, temp_file, verbosity, requested_memory_limit_gb, cls.glove.log_location_char)
         cls.log()
         return ret
@@ -116,14 +125,20 @@ class Train(Stage):
 
     @classmethod
     def run(cls, cooccurrence_input_file, vocab_file, vector_files_prefix=None, gradsq_files_prefix=None, verbosity=None):
-        vector_files_prefix = vector_files_prefix or "vectors"
-        gradsq_files_prefix = gradsq_files_prefix or "gradsq"
+        vector_files_prefix = vector_files_prefix or b"vectors"
+        gradsq_files_prefix = gradsq_files_prefix or b"gradsq"
         verbosity = verbosity or 2
+        logging.info("saving vectors to: %s", vector_files_prefix)
+        logging.info("saving gradsq to %s", gradsq_files_prefix)
         cls.__train(cooccurrence_input_file, vocab_file, vector_files_prefix, gradsq_files_prefix, verbosity)
 
     @classmethod
-    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity):    
-        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity, cls.glove.log_location_char)
+    def __train(cls, input_matrix, vocab_file, vector_files, gradsq_files, verbosity):  
+        # ...verbosity...
+        # int num_iteration, int model, int use_binary, int checkpoint_every, 
+        #   double eta, double alpha, double x_max, 
+        # ....logfile
+        ret = lib.glove.train(input_matrix, vocab_file, vector_files, 1, gradsq_files, verbosity, 3, 2, 0, 0, 0.05, 0.75, 10, cls.glove.log_location_char)
         cls.log()
         return ret
 

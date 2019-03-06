@@ -2,7 +2,6 @@ from datetime import datetime
 from pathlib import Path
 
 from crucyble.stages import *
-from crucyble.decorators import with_paths
 from crucyble.logging import LoggingMeta
 
 
@@ -20,27 +19,28 @@ class GloVe(metaclass=LoggingMeta):
     _default_output_path = Path.home() / ".cache" / "crucyble"
 
     @classmethod
-    def output_path(cls, filename):
+    def output_path_for(cls, filename):
         if not cls._default_output_path.exists():
             cls._default_output_path.mkdir(exist_ok=True)
         return cls._default_output_path / filename
     
     @classmethod
-    @with_paths(ignore="output_path") # TODO: add check_paths decorator, and passthrough Path objects to lower level classes
     def vocab_count(cls, corpus, max_vocab: MaxVocab, min_word_count, verbose=None, output_path=None):
         if verbose is None:
             verbose = cls._default_verbosity
         if output_path is None:
             output_path = corpus.parent / "vocab.txt"
+        else:
+            if not output_path.parent.exists():
+                raise ValueError("Directory does not exist for desired output path {}".format(output_path))
         return VocabCount.run(corpus, output_path, max_vocab, min_word_count, verbose=verbose)
 
     @classmethod
-    @with_paths(ignore=["output_path","tmp_overflow_file"])
     def cooccur(cls, corpus, vocab,
             symmetry: int, context_window_size: int, memory_limit: float,
             output_path=None, verbose=None, tmp_overflow_file: Path=None):
         if not output_path:
-            output_path = cls.output_path("cooccur.bin")
+            output_path = cls.output_path_for("cooccur.bin")
         if verbose is None:
             verbose = cls._default_verbosity
         return Cooccur.run(corpus, vocab, output_path, symmetry, context_window_size,

@@ -5,6 +5,9 @@ from pathlib import Path, PosixPath, PurePosixPath, PureWindowsPath
 
 PATH_TYPES = (Path, PosixPath, PurePosixPath, PurePosixPath)
 
+def path_to_bytes(path: Path):
+    return str(path).encode('utf-8')
+
 def with_paths(ignore=None):
     """This casts any arguments of Path types to utf-8 character strings i.e. b'/opt/file.txt'
     optional argument `ignore` is used to skip any specified **kwargs**
@@ -28,16 +31,15 @@ def with_paths(ignore=None):
                     arg_name = inspect.getfullargspec(lib_fn)[0][index]
                     if not arg.exists() and arg_name not in ignore_names:
                         throw_not_exists(lib_fn, arg_name, arg)
-                    arg = str(arg).encode('utf-8')
+                    arg = path_to_bytes(arg)
                 l_args[index] = arg
             args = tuple(l_args)
             d_kwargs = dict(kwargs)
             for kwarg, val in d_kwargs.items():
                 if isinstance(val, PATH_TYPES):
-                    print(kwarg)
                     if not val.exists() and kwarg not in ignore_names:
                         throw_not_exists(lib_fn, kwarg, val)
-                    val = str(val).encode('utf-8')
+                    val = path_to_bytes(val)
                 d_kwargs[kwarg] = val
             kwargs = dict(d_kwargs)
             return lib_fn(*args, **kwargs)

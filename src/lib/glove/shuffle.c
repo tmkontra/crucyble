@@ -94,6 +94,7 @@ int shuffle_merge(int num, char* output_file) {
     }
     
     array = malloc(sizeof(CREC) * array_size);
+    if (!array) { fprintf(logfile, "ERROR: unable to allocate array!"); return 1; }
 
     fid = malloc(sizeof(FILE) * num);
     for(fidcounter = 0; fidcounter < num; fidcounter++) { //num = number of temporary files to merge

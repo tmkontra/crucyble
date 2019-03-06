@@ -132,6 +132,7 @@ int get_counts(char* corpus_file, char* output_file) {
     VOCAB *vocab;
     FILE *fid = fopen(corpus_file, "rb");
     FILE *fout = fopen(output_file, "wb");
+    if (!fout) { fprintf(logfile, "ERROR: unable to open output file at: %s", output_file); return 1; }
     
     fprintf(logfile, "BUILDING VOCABULARY\n");
     if(verbose > 1) fprintf(logfile, "Processed %lld tokens.", i);

@@ -189,6 +189,7 @@ int save_params(int nb_iter) {
     char *word = malloc(sizeof(char) * MAX_STRING_LENGTH + 1);
     FILE *fid, *fout, *fgs;
     
+    fprintf(logfile, "use_binary set to: %d", use_binary);
     if (use_binary > 0) { // Save parameters in binary file
         if (nb_iter <= 0)
             sprintf(output_file,"%s.bin",save_W_file);
@@ -351,7 +352,11 @@ int train_glove() {
     return save_params(0);
 }
 
-int train(char* input_file_, char* vocab_file_, char* output_vector_files, int do_save_gradsq_files, char* opt_output_gradsq_files, int verbosity, char *log_file) {
+int train(char* input_file_, char* vocab_file_, char* output_vector_files, 
+          int do_save_gradsq_files, char* opt_output_gradsq_files, int verbosity,
+          int num_iteration, int model, int use_binary, int checkpoint_every, 
+          double eta, double alpha, double x_max,
+          char *log_file) {
     int i;
     FILE *fid;
     vocab_file = malloc(sizeof(char) * MAX_STRING_LENGTH);
@@ -363,12 +368,14 @@ int train(char* input_file_, char* vocab_file_, char* output_vector_files, int d
     logfile = fopen(log_file, "w");
 
     verbose = verbosity;
+    num_iter = num_iteration;
     strcpy(input_file, input_file_);
     strcpy(vocab_file, vocab_file_);
     strcpy(save_W_file, output_vector_files);
     // TODO: save_gradsq is optional (boolean), how to have kwarg save_gradsq_file for fname?
-    if (!strcmp(opt_output_gradsq_files, "")) {
+    if (opt_output_gradsq_files != "\0") {
         strcpy(save_gradsq_file, opt_output_gradsq_files); save_gradsq = 1;
+        fprintf(logfile, "saving gradsq_file to: %s", save_gradsq_file);
     } else if (do_save_gradsq_files == 1) {
         strcpy(save_gradsq_file, "gradsq"); save_gradsq = do_save_gradsq_files;
     } else {
